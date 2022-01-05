@@ -9,3 +9,4 @@ This App prevent windows from locking screen (policy-enforced)
 * Add program to System Tray
 * Save and Load setting from Registry Editor
 * User define shortcut for activation
+* Time scheduler - The user can say when it need to be aktiv
