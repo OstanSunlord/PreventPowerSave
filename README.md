@@ -10,3 +10,4 @@ This App prevent windows from locking screen (policy-enforced)
 * Save and Load setting
 * User define shortcut for activation
 * Time scheduler - The user can say when it need to be aktiv
+* Create an Wix - Installer
