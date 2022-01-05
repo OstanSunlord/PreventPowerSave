@@ -12,4 +12,5 @@ This App prevent windows from locking screen (policy-enforced)
 * Option set to run as startup
 * User define shortcut for start and stop
 * Time scheduler - The user can say when it need to be aktiv
+* Give the option to starte the App in a standad winform App
 * Create an Wix - Installer
