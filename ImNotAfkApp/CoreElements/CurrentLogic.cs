@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ImNotAfkApp.CoreElements.State;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -6,9 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 
-namespace ImNotAfkApp
+namespace ImNotAfkApp.CoreElements
 {
-    public class KeepAliveLogic
+    public class CurrentLogic
     {
         [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         static extern EXECUTION_STATE SetThreadExecutionState(EXECUTION_STATE esFlags);
@@ -17,18 +18,31 @@ namespace ImNotAfkApp
         private Timer m_timer = null;
         private DateTime m_endDateTime;
         private static int tickInterval = 60000;
-
+        private PROGRAM_STATE state;
 
         public event EventHandler<ElapsedEventArgs> Elapsed;
         public event EventHandler Stoped;
         public event EventHandler Started;
 
-        public KeepAliveLogic()
+        public event EventHandler<StateChangedEventArgs> StateChanged;
+
+        public CurrentLogic()
         {
             State = PROGRAM_STATE.Idle;
         }
 
-        public PROGRAM_STATE State { get; set; }
+        public PROGRAM_STATE State
+        {
+            get => state;
+            set
+            {
+                if(state != value)
+                {
+                    state = value;
+                    StateChanged.Invoke(this, new StateChangedEventArgs(state));
+                }
+            }
+        }
 
         Timer Timer
         {
@@ -63,11 +77,13 @@ namespace ImNotAfkApp
 
         internal void Stop()
         {
-            Timer.Stop();
-            SetThreadExecutionState(EXECUTION_STATE.ES_CONTINUOUS);
-            State = PROGRAM_STATE.Idle;
-
-            Stoped?.Invoke(this, EventArgs.Empty);
+            if (State != PROGRAM_STATE.Idle)
+            {
+                Timer.Stop();
+                SetThreadExecutionState(EXECUTION_STATE.ES_CONTINUOUS);
+                State = PROGRAM_STATE.Idle;
+                Stoped?.Invoke(this, EventArgs.Empty);
+            }
         }
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)

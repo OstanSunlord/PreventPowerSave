@@ -1,12 +1,18 @@
 # ImNotAfk
 This App prevent windows from locking screen (policy-enforced)
 
-## Roadmap
+## Added functionality
 * UI interface (winforms)
-* UI dark mode
 * Interval options - timer before the program disable it selv, 
-* Option set to run as startup
 * Add program to System Tray
 * Save and Load setting
-* User define shortcut for activation
+* Option set to run as startup
+
+## Roadmap
+* Theme UI dark mode 
+* User define shortcut for start and stop
 * Time scheduler - The user can say when it need to be aktiv
+* Give the option to starte the App in a standad winform App
+* Create an Wix - Installer
+* Status window, when clicking on System Tray(menu->header)
+* Show version nummer on SplashScreen

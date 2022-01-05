@@ -1,7 +1,7 @@
 ﻿
-namespace ImNotAfkApp.Configuration
+namespace ImNotAfkApp.Client.Configuration
 {
-    partial class ConfigurationView
+    partial class ConfigurationDialog
     {
         /// <summary>
         /// Required designer variable.
@@ -75,6 +75,7 @@ namespace ImNotAfkApp.Configuration
             // btnAmend
             // 
             this.btnAmend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAmend.DialogResult = System.Windows.Forms.DialogResult.Yes;
             this.btnAmend.Location = new System.Drawing.Point(45, 152);
             this.btnAmend.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAmend.Name = "btnAmend";
@@ -82,11 +83,12 @@ namespace ImNotAfkApp.Configuration
             this.btnAmend.TabIndex = 4;
             this.btnAmend.Text = "Amend";
             this.btnAmend.UseVisualStyleBackColor = true;
-            this.btnAmend.Click += new System.EventHandler(this.btnAmend_Click);
+            this.btnAmend.Click += new System.EventHandler(this.btn_Click);
             // 
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.Location = new System.Drawing.Point(139, 152);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnClose.Name = "btnClose";
@@ -94,7 +96,7 @@ namespace ImNotAfkApp.Configuration
             this.btnClose.TabIndex = 5;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.btnClose.Click += new System.EventHandler(this.btn_Click);
             // 
             // lbIntervalHeader
             // 
@@ -127,8 +129,9 @@ namespace ImNotAfkApp.Configuration
             this.lbMinuteHeader.TabIndex = 8;
             this.lbMinuteHeader.Text = "minutes";
             // 
-            // ConfigurationView
+            // ConfigurationDialog
             // 
+            this.AcceptButton = this.btnAmend;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(241, 195);
@@ -144,7 +147,7 @@ namespace ImNotAfkApp.Configuration
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "ConfigurationView";
+            this.Name = "ConfigurationDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ConfigurationView";
             this.ResumeLayout(false);

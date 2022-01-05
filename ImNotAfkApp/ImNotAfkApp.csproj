@@ -46,27 +46,44 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\ConfigData.cs" />
-    <Compile Include="Configuration\ConfigurationView.cs">
+    <Compile Include="CoreElements\ConfigData.cs" />
+    <Compile Include="Client\Configuration\ConfigurationDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Configuration\ConfigurationView.Designer.cs">
-      <DependentUpon>ConfigurationView.cs</DependentUpon>
+    <Compile Include="Client\Configuration\ConfigurationDialog.Designer.cs">
+      <DependentUpon>ConfigurationDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="state\PROGRAM_STATE.cs" />
-    <Compile Include="state\THEMEMODE_STATE.cs" />
-    <Compile Include="Folder.cs" />
-    <Compile Include="state\EXECUTION_STATE.cs" />
-    <Compile Include="KeepAliveLogic.cs" />
+    <Compile Include="CoreElements\Controller.cs" />
+    <Compile Include="Client\SplashScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Client\SplashScreen.Designer.cs">
+      <DependentUpon>SplashScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CoreElements\StateChangedEventArgs.cs" />
+    <Compile Include="CoreElements\State\PROGRAM_STATE.cs" />
+    <Compile Include="CoreElements\State\THEMEMODE_STATE.cs" />
+    <Compile Include="CoreElements\Folder.cs" />
+    <Compile Include="CoreElements\State\EXECUTION_STATE.cs" />
+    <Compile Include="CoreElements\CurrentLogic.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SystemTray\MainContextMenu.cs">
+    <Compile Include="Client\SystemTray\NotifyIconLogic.cs" />
+    <Compile Include="Client\SystemTray\NotifyMenuItem\ConfigurationNTCommand.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="SystemTray\SystemTrayApplicationContext.cs" />
+    <Compile Include="Client\SystemTray\NotifyMenuItem\StartNTCommand.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Client\SystemTray\NotifyMenuItem\StatusNTCommand.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Client\SystemTray\NotifyMenuItem\StopNTCommand.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ExtensionMethods\EnumExtensionMethods.cs" />
-    <EmbeddedResource Include="Configuration\ConfigurationView.resx">
-      <DependentUpon>ConfigurationView.cs</DependentUpon>
+    <EmbeddedResource Include="Client\Configuration\ConfigurationDialog.resx">
+      <DependentUpon>ConfigurationDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -78,6 +95,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Client\SplashScreen.resx">
+      <DependentUpon>SplashScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -94,5 +114,9 @@
   <ItemGroup>
     <None Include="Resources\lightning.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loadingScreen.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

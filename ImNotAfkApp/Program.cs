@@ -1,5 +1,4 @@
-﻿using ImNotAfkApp.SystemTray;
-using System;
+﻿using System;
 using System.Windows.Forms;
 
 namespace ImNotAfkApp
@@ -14,7 +13,7 @@ namespace ImNotAfkApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SystemTrayApplicationContext());
+            Application.Run(new Client.SplashScreen());
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ImNotAfkApp
+namespace ImNotAfkApp.CoreElements.State
 {
     [FlagsAttribute]
     public enum THEMEMODE_STATE
