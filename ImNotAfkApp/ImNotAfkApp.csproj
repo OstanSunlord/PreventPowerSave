@@ -46,6 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Client\BaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Client\BaseForm.Designer.cs">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CoreElements\Themes.cs" />
     <Compile Include="CoreElements\ConfigData.cs" />
     <Compile Include="Client\Configuration\ConfigurationDialog.cs">
       <SubType>Form</SubType>
@@ -82,6 +89,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ExtensionMethods\EnumExtensionMethods.cs" />
+    <EmbeddedResource Include="Client\BaseForm.resx">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Client\Configuration\ConfigurationDialog.resx">
       <DependentUpon>ConfigurationDialog.cs</DependentUpon>
     </EmbeddedResource>

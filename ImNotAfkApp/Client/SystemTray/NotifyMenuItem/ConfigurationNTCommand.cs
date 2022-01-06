@@ -46,7 +46,8 @@ namespace ImNotAfkApp.Client.SystemTray.NotifyMenuItem
                     Controller.ConfigData.SetRunOnStartUp(Controller.ConfigurationDialog.RunOnStartUp);
                     Controller.ConfigData.Save();
                 }
-                Controller.ConfigurationDialog.Focus();
+
+                Controller.ConfigurationDialog.Dispose();
             }
             catch (ObjectDisposedException e)
             {

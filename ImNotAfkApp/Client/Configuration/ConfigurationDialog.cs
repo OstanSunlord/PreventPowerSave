@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace ImNotAfkApp.Client.Configuration
 {
-    public partial class ConfigurationDialog : Form
+    public partial class ConfigurationDialog : BaseForm
     {
         public ConfigurationDialog(ConfigData configData, string text)
         {
@@ -13,6 +13,9 @@ namespace ImNotAfkApp.Client.Configuration
             Text = text;
 
             ConfigData = configData;
+
+            btnAmend.BackColor = BackColor;
+            btnClose.BackColor = BackColor;
         }
 
         public ConfigData ConfigData { get; }

@@ -20,6 +20,8 @@ namespace ImNotAfkApp.CoreElements
         public event EventHandler<EventArgs> Loaded;
         public event EventHandler<EventArgs> RunOnStartUpChanged;
 
+        public event EventHandler<EventArgs> ThemeChanged;
+
         public void Save()
         {
             XmlSerializer xs = new XmlSerializer(typeof(ConfigData));
@@ -60,7 +62,12 @@ namespace ImNotAfkApp.CoreElements
 
         internal void SetThemeMode(string themeMode)
         {
-            ThemeMode = GetEnumValueByDescription(themeMode);
+            var theme = GetEnumValueByDescription(themeMode);
+            if (ThemeMode != theme)
+            {
+                ThemeMode = theme;
+                ThemeChanged.Invoke(this, EventArgs.Empty);
+            }
         }
 
         internal void SetInterval(string interVal)
@@ -73,10 +80,10 @@ namespace ImNotAfkApp.CoreElements
 
         private string GetConfigFilePath()
         {
-            return Path.Combine(Folder.GetWorkingFolder(), "ConfigData.xml");
+            return Path.Combine(Folder.GetWorkingFolder(), "Config.xml");
         }
 
-        private THEMEMODE_STATE GetEnumValueByDescription(string description)
+        internal THEMEMODE_STATE GetEnumValueByDescription(string description)
         {
             foreach (THEMEMODE_STATE item in Enum.GetValues(typeof(THEMEMODE_STATE)))
             {
