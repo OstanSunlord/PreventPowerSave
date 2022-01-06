@@ -1,5 +1,5 @@
 ﻿
-namespace ImNotAfkApp.Client.Configuration
+namespace ImNotAfkApp.Client
 {
     partial class ConfigurationDialog
     {
@@ -37,6 +37,7 @@ namespace ImNotAfkApp.Client.Configuration
             this.lbIntervalHeader = new System.Windows.Forms.Label();
             this.tbInterVal = new System.Windows.Forms.TextBox();
             this.lbMinuteHeader = new System.Windows.Forms.Label();
+            this.cbRunAsSystemTray = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // lbThemeHeader
@@ -129,12 +130,28 @@ namespace ImNotAfkApp.Client.Configuration
             this.lbMinuteHeader.TabIndex = 8;
             this.lbMinuteHeader.Text = "minutes";
             // 
+            // cbRunAsSystemTray
+            // 
+            this.cbRunAsSystemTray.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbRunAsSystemTray.AutoSize = true;
+            this.cbRunAsSystemTray.Checked = true;
+            this.cbRunAsSystemTray.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbRunAsSystemTray.Location = new System.Drawing.Point(87, 96);
+            this.cbRunAsSystemTray.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbRunAsSystemTray.Name = "cbRunAsSystemTray";
+            this.cbRunAsSystemTray.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.cbRunAsSystemTray.Size = new System.Drawing.Size(139, 20);
+            this.cbRunAsSystemTray.TabIndex = 9;
+            this.cbRunAsSystemTray.Text = "Run in System Tray";
+            this.cbRunAsSystemTray.UseVisualStyleBackColor = true;
+            // 
             // ConfigurationDialog
             // 
             this.AcceptButton = this.btnAmend;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(241, 195);
+            this.Controls.Add(this.cbRunAsSystemTray);
             this.Controls.Add(this.lbMinuteHeader);
             this.Controls.Add(this.tbInterVal);
             this.Controls.Add(this.lbIntervalHeader);
@@ -149,7 +166,7 @@ namespace ImNotAfkApp.Client.Configuration
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ConfigurationDialog";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ConfigurationView";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -166,5 +183,6 @@ namespace ImNotAfkApp.Client.Configuration
         private System.Windows.Forms.Label lbIntervalHeader;
         private System.Windows.Forms.TextBox tbInterVal;
         private System.Windows.Forms.Label lbMinuteHeader;
+        private System.Windows.Forms.CheckBox cbRunAsSystemTray;
     }
 }

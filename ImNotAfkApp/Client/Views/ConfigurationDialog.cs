@@ -3,9 +3,9 @@ using ImNotAfkApp.CoreElements.State;
 using System;
 using System.Windows.Forms;
 
-namespace ImNotAfkApp.Client.Configuration
+namespace ImNotAfkApp.Client
 {
-    public partial class ConfigurationDialog : BaseForm
+    public partial class ConfigurationDialog : BaseDialog
     {
         public ConfigurationDialog(ConfigData configData, string text)
         {
@@ -36,6 +36,12 @@ namespace ImNotAfkApp.Client.Configuration
             set => cbRunOnStart.Checked = value;
         }
 
+        public bool RunInSystemTray
+        {
+            get => cbRunAsSystemTray.Checked;
+            set => cbRunAsSystemTray.Checked = value;
+        }
+
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -49,6 +55,7 @@ namespace ImNotAfkApp.Client.Configuration
             InterVal = ConfigData.Interval.ToString();
             ThemeMode = ConfigData.ThemeMode.GetEnumDescription();
             RunOnStartUp = ConfigData.RunOnStartUp;
+            RunInSystemTray = ConfigData.RunInSystemTray;
         }
 
         private void btn_Click(object sender, EventArgs e)

@@ -15,10 +15,13 @@ namespace ImNotAfkApp.CoreElements
         public bool RunOnStartUp { get; set; } = false;
         [XmlAttribute("theme")]
         public THEMEMODE_STATE ThemeMode { get; set; } = THEMEMODE_STATE.LightMode;
+        [XmlAttribute("tray")]
+        public bool RunInSystemTray { get; set; } = true;
 
         public event EventHandler<EventArgs> Saved;
         public event EventHandler<EventArgs> Loaded;
         public event EventHandler<EventArgs> RunOnStartUpChanged;
+        public event EventHandler<EventArgs> RunInSystemTrayChanged;
 
         public event EventHandler<EventArgs> ThemeChanged;
 
@@ -47,8 +50,18 @@ namespace ImNotAfkApp.CoreElements
             Interval = data.Interval;
             ThemeMode = data.ThemeMode;
             RunOnStartUp = data.RunOnStartUp;
+            RunInSystemTray = data.RunInSystemTray;
 
             Loaded?.Invoke(this, EventArgs.Empty);
+        }
+
+        internal void SetRunInSystemTray(bool state)
+        {
+            if(RunInSystemTray != state)
+            {
+                RunInSystemTray = state;
+                RunInSystemTrayChanged?.Invoke(this, EventArgs.Empty);
+            }
         }
 
         internal void SetRunOnStartUp(bool runOnStartUp)

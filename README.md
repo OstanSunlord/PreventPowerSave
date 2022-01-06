@@ -8,11 +8,11 @@ This App prevent windows from locking screen (policy-enforced)
 * Save and Load setting
 * Option set to run as startup
 * ThemeUI dark mode
+* Give the option to starte the App in a standad winform App
+* when clicking on the header in (System Tray->Menu->Header) it need to display a status window.
 
 ## Roadmap
 * User define shortcut for start and stop
 * Time scheduler - The user can say when it need to be aktiv
-* Give the option to starte the App in a standad winform App
-* when clicking on the header in (System Tray->Menu->Header) it need to display a status window.
 * Create an Wix - Installer
 * Error handling 

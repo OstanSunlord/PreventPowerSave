@@ -1,4 +1,6 @@
-﻿using ImNotAfkApp.Client.Configuration;
+﻿using ImNotAfkApp.Client;
+using System;
+using System.Windows.Forms;
 
 namespace ImNotAfkApp.CoreElements
 {
@@ -6,7 +8,76 @@ namespace ImNotAfkApp.CoreElements
     {
         public static ConfigData ConfigData { get; set; } = new ConfigData();
         public static ConfigurationDialog ConfigurationDialog { get; set; } = null;
+        public static RunDialog RunDialog { get; set; } = null;
         public static CurrentLogic CurrentLogic { get; } = new CurrentLogic();
 
+        public static void ShowConfigurationDialog(FormStartPosition formStartPosition) =>
+            ShowConfigurationDialog(formStartPosition, true);
+
+        private static void ShowConfigurationDialog(FormStartPosition formStartPosition, bool firstRun)
+        {
+            try
+            {
+                if (ConfigurationDialog == null)
+                {
+                    ConfigurationDialog = new ConfigurationDialog(ConfigData, "Configuration")
+                    {
+                        StartPosition = formStartPosition
+                    };
+                }
+
+                if (ConfigurationDialog.ShowDialog() == DialogResult.Yes)
+                {
+                    ConfigData.SetInterval(ConfigurationDialog.InterVal);
+                    ConfigData.SetThemeMode(ConfigurationDialog.ThemeMode);
+                    ConfigData.SetRunOnStartUp(ConfigurationDialog.RunOnStartUp);
+                    ConfigData.SetRunInSystemTray(ConfigurationDialog.RunInSystemTray);
+                    ConfigData.Save();
+                }
+
+                ConfigurationDialog.Dispose();
+            }
+            catch (ObjectDisposedException e)
+            {
+                ConfigurationDialog = null;
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+
+                if (!firstRun) throw e;
+                ShowConfigurationDialog(formStartPosition, false);
+                return;
+            }
+        }
+
+        internal static void ShowRunDialog(object sender) =>
+            ShowRunDialog(sender, true);
+        internal static void ShowRunDialog(object sender, bool firstRun)
+        {
+            try
+            {
+                if (RunDialog == null)
+                {
+                    RunDialog = new RunDialog(sender);
+                    RunDialog.ShowDialog();
+                    RunDialog = null;
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
+                }
+                else
+                {
+                    RunDialog.Focus();
+                }
+            }
+            catch (ObjectDisposedException e)
+            {
+                RunDialog = null;
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+
+                if (!firstRun) throw e;
+                ShowRunDialog(sender, false);
+                return;
+            }
+        }
     }
 }

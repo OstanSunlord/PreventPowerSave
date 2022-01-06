@@ -46,18 +46,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client\BaseForm.cs">
+    <Compile Include="Client\Views\AButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Client\Views\AButton.Designer.cs">
+      <DependentUpon>AButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Client\Views\BaseDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Client\BaseForm.Designer.cs">
-      <DependentUpon>BaseForm.cs</DependentUpon>
+    <Compile Include="Client\Views\BaseDialog.Designer.cs">
+      <DependentUpon>BaseDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Client\Views\RunDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Client\Views\RunDialog.Designer.cs">
+      <DependentUpon>RunDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="CoreElements\Themes.cs" />
     <Compile Include="CoreElements\ConfigData.cs" />
-    <Compile Include="Client\Configuration\ConfigurationDialog.cs">
+    <Compile Include="Client\Views\ConfigurationDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Client\Configuration\ConfigurationDialog.Designer.cs">
+    <Compile Include="Client\Views\ConfigurationDialog.Designer.cs">
       <DependentUpon>ConfigurationDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="CoreElements\Controller.cs" />
@@ -89,11 +101,14 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ExtensionMethods\EnumExtensionMethods.cs" />
-    <EmbeddedResource Include="Client\BaseForm.resx">
-      <DependentUpon>BaseForm.cs</DependentUpon>
+    <EmbeddedResource Include="Client\Views\BaseDialog.resx">
+      <DependentUpon>BaseDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Client\Configuration\ConfigurationDialog.resx">
+    <EmbeddedResource Include="Client\Views\ConfigurationDialog.resx">
       <DependentUpon>ConfigurationDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Client\Views\RunDialog.resx">
+      <DependentUpon>RunDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

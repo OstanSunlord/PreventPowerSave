@@ -39,10 +39,13 @@ namespace ImNotAfkApp.CoreElements
                 if(state != value)
                 {
                     state = value;
-                    StateChanged.Invoke(this, new StateChangedEventArgs(state));
+                    StateChanged?.Invoke(this, new StateChangedEventArgs(state));
                 }
             }
         }
+
+        public int TickInterval => tickInterval;
+        public DateTime EndDateTime => m_endDateTime;
 
         Timer Timer
         {
@@ -64,7 +67,6 @@ namespace ImNotAfkApp.CoreElements
 
         public bool IsAlive => m_endDateTime > DateTime.Now;
 
-
         internal void Start(int runTime)
         {
             m_endDateTime = DateTime.Now.AddMilliseconds(runTime * tickInterval);
@@ -79,6 +81,7 @@ namespace ImNotAfkApp.CoreElements
         {
             if (State != PROGRAM_STATE.Idle)
             {
+                m_endDateTime = DateTime.Now;
                 Timer.Stop();
                 SetThreadExecutionState(EXECUTION_STATE.ES_CONTINUOUS);
                 State = PROGRAM_STATE.Idle;

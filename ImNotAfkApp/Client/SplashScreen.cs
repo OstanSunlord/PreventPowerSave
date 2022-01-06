@@ -30,10 +30,35 @@ namespace ImNotAfkApp.Client
 
         private void WaitTimer_Tick(object sender, EventArgs e)
         {
-            Controller.ConfigData.Loaded += ConfigData_Loaded;
-            Controller.ConfigData.RunOnStartUpChanged += ConfigData_RunOnStartUpChanged;
-            Controller.ConfigData.Load();
             waitTimer.Stop();
+
+            Controller.ConfigData.RunOnStartUpChanged += ConfigData_RunOnStartUpChanged;
+            Controller.ConfigData.RunInSystemTrayChanged += ConfigData_RunInSystemTrayChanged;
+            Controller.ConfigData.Load();
+
+            this.Hide();
+
+            if (Controller.ConfigData.RunInSystemTray)
+            {
+                QuickMenu = NotifyIconLogic.GetNotify();
+            }
+            else
+            {
+                new RunDialog().ShowDialog();
+                Application.Exit();
+            }
+        }
+
+        private void ConfigData_RunInSystemTrayChanged(object sender, EventArgs e)
+        {
+            if(sender is ConfigData config)
+            {
+                if(MessageBox.Show(this, "Do you want restart the program to activate the change?", "Restart", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    config.Save();
+                    Application.Restart();
+                }
+            }
         }
 
         private void ConfigData_RunOnStartUpChanged(object sender, EventArgs e)
@@ -50,19 +75,6 @@ namespace ImNotAfkApp.Client
             else
             {
                 rk.DeleteValue(AppName, false);
-            }
-        }
-
-        private void ConfigData_Loaded(object sender, EventArgs e)
-        {
-            if (InvokeRequired)
-            {
-                Invoke(new MethodInvoker(() => ConfigData_Loaded(sender, e)));
-            }
-            else
-            {
-                this.Hide();
-                QuickMenu = NotifyIconLogic.GetNotify();
             }
         }
     }

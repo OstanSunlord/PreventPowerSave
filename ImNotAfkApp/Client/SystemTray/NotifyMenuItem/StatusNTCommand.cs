@@ -9,8 +9,14 @@ namespace ImNotAfkApp.Client.SystemTray.NotifyMenuItem
         {
             Text = "I'm not AFK";
             Name = "Status";
+            Click += StatusNTCommand_Click;
 
             Controller.CurrentLogic.StateChanged += CurrentKeepAlive_StateChanged;
+        }
+
+        private void StatusNTCommand_Click(object sender, System.EventArgs e)
+        {
+            Controller.ShowRunDialog(this);
         }
 
         private void CurrentKeepAlive_StateChanged(object sender, StateChangedEventArgs e)
