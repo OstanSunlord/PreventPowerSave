@@ -1,11 +1,7 @@
 ﻿using Microsoft.Toolkit.Uwp.Notifications;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ImNotAfkApp
+namespace ImNotAfkApp.CoreElements
 {
     // info: https://docs.microsoft.com/en-us/windows/apps/design/shell/tiles-and-notifications/adaptive-interactive-toasts?tabs=builder-syntax
 
@@ -32,7 +28,6 @@ namespace ImNotAfkApp
             {
                 toast.AddText(context);
             }
-
             toast.Show();
         }
 
