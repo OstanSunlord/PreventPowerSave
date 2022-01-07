@@ -21,6 +21,19 @@ namespace ImNotAfkApp.CoreElements
         private PROGRAM_STATE state;
 
         public event EventHandler<ElapsedEventArgs> Elapsed;
+
+        internal void SwitchState(int interval)
+        {
+            if(IsAlive)
+            {
+                Stop();
+            }
+            else
+            {
+                Start(interval);
+            }
+        }
+
         public event EventHandler Stoped;
         public event EventHandler Started;
 

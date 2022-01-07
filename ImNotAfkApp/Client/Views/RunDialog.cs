@@ -18,11 +18,16 @@ namespace ImNotAfkApp.Client
         {
             InitializeComponent();
 
+            UpdateStartAndStopButton();
+            InitProgressBar(Controller.ConfigData.Interval * Controller.CurrentLogic.TickInterval);
+
             Controller.CurrentLogic.Started += CurrentLogic_Started;
             Controller.CurrentLogic.Stoped += CurrentLogic_Stoped;
             Controller.CurrentLogic.Elapsed += CurrentLogic_Elapsed;
 
-            ResetDisplay();        
+            ResetDisplay();   
+            
+
         }
 
         public RunDialog(object sender) : this()
@@ -64,7 +69,6 @@ namespace ImNotAfkApp.Client
                 Controller.CurrentLogic.Start(Controller.ConfigData.Interval);
                 InitProgressBar(Controller.ConfigData.Interval * Controller.CurrentLogic.TickInterval);
             }
-            UpdateProgressBar();
         }
 
         private void UpdateStartAndStopButton()

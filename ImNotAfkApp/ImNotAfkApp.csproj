@@ -64,6 +64,7 @@
     <Compile Include="Client\Views\RunDialog.Designer.cs">
       <DependentUpon>RunDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="CoreElements\KeyboardHook.cs" />
     <Compile Include="CoreElements\Themes.cs" />
     <Compile Include="CoreElements\ConfigData.cs" />
     <Compile Include="Client\Views\ConfigurationDialog.cs">

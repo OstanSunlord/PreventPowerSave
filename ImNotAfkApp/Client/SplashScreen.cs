@@ -8,14 +8,31 @@ namespace ImNotAfkApp.Client
 {
     public partial class SplashScreen : Form
     {
+        KeyboardHook hook = new KeyboardHook();
+
         private Timer waitTimer;
 
         public SplashScreen()
         {
             InitializeComponent();
+
+            hook.KeyPressed += Hook_KeyPressed;
+
+            hook.RegisterHotKey(CoreElements.ModifierKeys.Control | CoreElements.ModifierKeys.Alt,
+            Keys.S);
+
         }
 
+        private void Hook_KeyPressed(object sender, KeyPressedEventArgs e)
+        {
+            Controller.CurrentLogic.SwitchState(Controller.ConfigData.Interval);
+        }
+
+        #region Properties 
+
         public NotifyIcon QuickMenu { get; set; }
+
+        #endregion
 
         private void SplashScreen_Shown(object sender, EventArgs e)
         {
@@ -77,5 +94,7 @@ namespace ImNotAfkApp.Client
                 rk.DeleteValue(AppName, false);
             }
         }
+
+
     }
 }
