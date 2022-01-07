@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace ImNotAfkApp
+namespace ImNotAFK
 {
     static class Program
     {

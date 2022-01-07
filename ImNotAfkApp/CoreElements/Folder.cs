@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ImNotAfkApp.CoreElements
+namespace ImNotAFK.CoreElements
 {
     public static class Folder
     {

@@ -1,7 +1,7 @@
-﻿using ImNotAfkApp.CoreElements;
+﻿using ImNotAFK.CoreElements;
 using System.Windows.Forms;
 
-namespace ImNotAfkApp.Client.SystemTray.NotifyMenuItem
+namespace ImNotAFK.Client.SystemTray.NotifyMenuItem
 {
     internal class StatusNTCommand : MenuItem
     {

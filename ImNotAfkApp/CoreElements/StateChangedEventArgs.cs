@@ -1,7 +1,7 @@
-﻿using ImNotAfkApp.CoreElements.State;
+﻿using ImNotAFK.CoreElements.State;
 using System;
 
-namespace ImNotAfkApp.CoreElements
+namespace ImNotAFK.CoreElements
 {
     public class StateChangedEventArgs : EventArgs
     {

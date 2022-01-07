@@ -1,4 +1,4 @@
-﻿using ImNotAfkApp.CoreElements;
+﻿using ImNotAFK.CoreElements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ImNotAfkApp.Client.SystemTray
+namespace ImNotAFK.Client.SystemTray
 {
     public class NotifyIconLogic
     {

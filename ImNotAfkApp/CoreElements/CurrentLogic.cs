@@ -1,4 +1,4 @@
-﻿using ImNotAfkApp.CoreElements.State;
+﻿using ImNotAFK.CoreElements.State;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 
-namespace ImNotAfkApp.CoreElements
+namespace ImNotAFK.CoreElements
 {
     public class CurrentLogic
     {
@@ -17,6 +17,7 @@ namespace ImNotAfkApp.CoreElements
 
         private Timer m_timer = null;
         private DateTime m_endDateTime;
+        private DateTime m_startDateTime;
         private static int tickInterval = 60000;
         private PROGRAM_STATE state;
 
@@ -82,6 +83,7 @@ namespace ImNotAfkApp.CoreElements
 
         internal void Start(int runTime)
         {
+            m_startDateTime = DateTime.Now;
             m_endDateTime = DateTime.Now.AddMilliseconds(runTime * tickInterval);
             Timer.Start();
             SetThreadExecutionState(EXECUTION_STATE.ES_DISPLAY_REQUIRED | EXECUTION_STATE.ES_CONTINUOUS);
@@ -101,7 +103,7 @@ namespace ImNotAfkApp.CoreElements
                 State = PROGRAM_STATE.Idle;
 
                 Notifications.Show("I'm not AFK",
-                    $"Windows is prevented from locking down{Environment.NewLine}End time is set to: {m_endDateTime}");
+                    $"Have ended after: : {(int)DateTime.Now.Subtract(m_startDateTime).TotalMinutes} Minutes");
 
                 Stoped?.Invoke(this, EventArgs.Empty);
             }

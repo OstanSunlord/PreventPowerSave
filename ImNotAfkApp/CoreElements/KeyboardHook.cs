@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ImNotAfkApp.CoreElements
+namespace ImNotAFK.CoreElements
 {
     public sealed class KeyboardHook : IDisposable
     {

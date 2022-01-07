@@ -1,8 +1,8 @@
-﻿using ImNotAfkApp.Client;
+﻿using ImNotAFK.Client;
 using System;
 using System.Windows.Forms;
 
-namespace ImNotAfkApp.CoreElements
+namespace ImNotAFK.CoreElements
 {
     public static class Controller
     {

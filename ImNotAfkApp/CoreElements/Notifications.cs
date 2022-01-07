@@ -1,7 +1,7 @@
 ﻿using Microsoft.Toolkit.Uwp.Notifications;
 using System;
 
-namespace ImNotAfkApp.CoreElements
+namespace ImNotAFK.CoreElements
 {
     // info: https://docs.microsoft.com/en-us/windows/apps/design/shell/tiles-and-notifications/adaptive-interactive-toasts?tabs=builder-syntax
 

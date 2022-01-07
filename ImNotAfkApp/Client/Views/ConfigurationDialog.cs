@@ -1,9 +1,9 @@
-﻿using ImNotAfkApp.CoreElements;
-using ImNotAfkApp.CoreElements.State;
+﻿using ImNotAFK.CoreElements;
+using ImNotAFK.CoreElements.State;
 using System;
 using System.Windows.Forms;
 
-namespace ImNotAfkApp.Client
+namespace ImNotAFK.Client
 {
     public partial class ConfigurationDialog : BaseDialog
     {

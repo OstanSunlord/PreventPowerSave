@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ImNotAfkApp.CoreElements.State
+namespace ImNotAFK.CoreElements.State
 {
     [FlagsAttribute]
     public enum EXECUTION_STATE : uint

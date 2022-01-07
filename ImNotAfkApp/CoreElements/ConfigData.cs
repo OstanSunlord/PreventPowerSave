@@ -1,9 +1,9 @@
-﻿using ImNotAfkApp.CoreElements.State;
+﻿using ImNotAFK.CoreElements.State;
 using System;
 using System.IO;
 using System.Xml.Serialization;
 
-namespace ImNotAfkApp.CoreElements
+namespace ImNotAFK.CoreElements
 {
     public class ConfigData
     {

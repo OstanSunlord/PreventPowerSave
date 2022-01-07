@@ -1,10 +1,10 @@
-﻿using ImNotAfkApp.CoreElements;
+﻿using ImNotAFK.CoreElements;
 using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace ImNotAfkApp.Client
+namespace ImNotAFK.Client
 {
     public partial class AButton : Button
     {

@@ -1,5 +1,5 @@
 ﻿
-namespace ImNotAfkApp.Client
+namespace ImNotAFK.Client
 {
     partial class SplashScreen
     {
@@ -37,7 +37,7 @@ namespace ImNotAfkApp.Client
             // PictureBoxSplashScreen
             // 
             this.PictureBoxSplashScreen.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PictureBoxSplashScreen.Image = global::ImNotAfkApp.Properties.Resources.loadingScreen;
+            this.PictureBoxSplashScreen.Image = global::ImNotAFK.Properties.Resources.loadingScreen;
             this.PictureBoxSplashScreen.Location = new System.Drawing.Point(0, 0);
             this.PictureBoxSplashScreen.Name = "PictureBoxSplashScreen";
             this.PictureBoxSplashScreen.Size = new System.Drawing.Size(400, 225);

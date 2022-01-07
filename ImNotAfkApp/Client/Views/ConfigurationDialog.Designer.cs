@@ -1,5 +1,5 @@
 ﻿
-namespace ImNotAfkApp.Client
+namespace ImNotAFK.Client
 {
     partial class ConfigurationDialog
     {

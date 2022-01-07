@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
-using ImNotAfkApp.Client.SystemTray;
-using ImNotAfkApp.CoreElements;
+using ImNotAFK.Client.SystemTray;
+using ImNotAFK.CoreElements;
 using Microsoft.Win32;
 
-namespace ImNotAfkApp.Client
+namespace ImNotAFK.Client
 {
     public partial class SplashScreen : Form
     {

@@ -1,5 +1,5 @@
 ﻿
-namespace ImNotAfkApp.Client
+namespace ImNotAFK.Client
 {
     partial class RunDialog
     {
@@ -30,9 +30,9 @@ namespace ImNotAfkApp.Client
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.btnClose = new ImNotAfkApp.Client.AButton(this.components);
-            this.btnConfig = new ImNotAfkApp.Client.AButton(this.components);
-            this.bthStartAndStop = new ImNotAfkApp.Client.AButton(this.components);
+            this.btnClose = new ImNotAFK.Client.AButton(this.components);
+            this.btnConfig = new ImNotAFK.Client.AButton(this.components);
+            this.bthStartAndStop = new ImNotAFK.Client.AButton(this.components);
             this.pbWorkingStatus = new System.Windows.Forms.ProgressBar();
             this.lbEndTimeContext = new System.Windows.Forms.Label();
             this.lbStatusContext = new System.Windows.Forms.Label();

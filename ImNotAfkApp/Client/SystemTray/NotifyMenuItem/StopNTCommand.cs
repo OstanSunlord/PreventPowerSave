@@ -1,8 +1,8 @@
-﻿using ImNotAfkApp.CoreElements;
+﻿using ImNotAFK.CoreElements;
 using System;
 using System.Windows.Forms;
 
-namespace ImNotAfkApp.Client.SystemTray.NotifyMenuItem
+namespace ImNotAFK.Client.SystemTray.NotifyMenuItem
 {
     internal class StopNTCommand : MenuItem
     {

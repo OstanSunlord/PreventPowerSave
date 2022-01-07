@@ -1,4 +1,4 @@
-﻿using ImNotAfkApp.CoreElements;
+﻿using ImNotAFK.CoreElements;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ImNotAfkApp.Client
+namespace ImNotAFK.Client
 {
     public partial class BaseDialog : Form
     {
