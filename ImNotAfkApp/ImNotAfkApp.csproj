@@ -7,11 +7,13 @@
     <ProjectGuid>{61F9BE92-288D-4CBC-9EBA-DAEF1B91BEE9}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>ImNotAfkApp</RootNamespace>
-    <AssemblyName>ImNotAfkApp</AssemblyName>
+    <AssemblyName>ImNotAfk</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,6 +33,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\lightning.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -102,6 +107,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ExtensionMethods\EnumExtensionMethods.cs" />
+    <Compile Include="Notifications.cs" />
     <EmbeddedResource Include="Client\Views\BaseDialog.resx">
       <DependentUpon>BaseDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -143,6 +149,10 @@
   <ItemGroup>
     <None Include="Resources\loadingScreen.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications">
+      <Version>7.1.2</Version>
+    </PackageReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

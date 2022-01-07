@@ -86,7 +86,8 @@ namespace ImNotAfkApp.CoreElements
             Timer.Start();
             SetThreadExecutionState(EXECUTION_STATE.ES_DISPLAY_REQUIRED | EXECUTION_STATE.ES_CONTINUOUS);
             State = PROGRAM_STATE.Running;
-
+            Notifications.Show("I'm not AFK", 
+                $"Windows is prevented from locking down{Environment.NewLine}End time is set to: {m_endDateTime}");
             Started?.Invoke(this, EventArgs.Empty);
         }
 
@@ -98,6 +99,10 @@ namespace ImNotAfkApp.CoreElements
                 Timer.Stop();
                 SetThreadExecutionState(EXECUTION_STATE.ES_CONTINUOUS);
                 State = PROGRAM_STATE.Idle;
+
+                Notifications.Show("I'm not AFK",
+                    $"Windows is prevented from locking down{Environment.NewLine}End time is set to: {m_endDateTime}");
+
                 Stoped?.Invoke(this, EventArgs.Empty);
             }
         }

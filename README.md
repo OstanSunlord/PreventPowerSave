@@ -11,10 +11,10 @@ This App prevent windows from locking screen (policy-enforced)
 * Give the option to starte the App in a standad winform App
 * when clicking on the header in (System Tray->Menu->Header) it need to display a status window.
 * Define shortcut for start and stop (Control+Alt+S) will switch run state
+* Toast notification when it starts and stops
 
 ## Roadmap
 
-* Toast notification when it starts and stops (https://docs.microsoft.com/en-us/windows/apps/design/shell/tiles-and-notifications/send-local-toast?tabs=uwp)
 * Time scheduler - The user can say when it need to be aktiv
 * Create Installer
 * Error handling 

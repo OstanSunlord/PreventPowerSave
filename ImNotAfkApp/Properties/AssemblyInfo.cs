@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ImNotAfkApp")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("I'm Not Afk")]
+[assembly: AssemblyDescription("This App prevent windows from locking screen (policy-enforced)")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("ImNotAfkApp")]
