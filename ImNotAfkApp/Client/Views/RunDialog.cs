@@ -121,6 +121,11 @@ namespace ImNotAFK.Client
         {
             Controller.ShowConfigurationDialog(FormStartPosition.CenterParent);
         }
+
+        private void btnScheduler_Click(object sender, EventArgs e)
+        {
+            Controller.ShowSchedulerDialog(FormStartPosition.CenterParent);
+        }
     }
 }
 
