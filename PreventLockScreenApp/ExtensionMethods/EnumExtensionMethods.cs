@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace ImNotAFK
+namespace PreventLockScreen
 {
     public static class EnumExtensionMethods
     {

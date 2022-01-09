@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ImNotAFK.CoreElements.State
+namespace PreventLockScreen.CoreElements.State
 {
     [FlagsAttribute]
     public enum PROGRAM_STATE

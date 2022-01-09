@@ -1,9 +1,9 @@
-﻿using ImNotAFK.Client;
-using ImNotAFK.Client.SystemTray.NotifyMenuItem;
+﻿using PreventLockScreen.Client;
+using PreventLockScreen.Client.SystemTray.NotifyMenuItem;
 using System;
 using System.Windows.Forms;
 
-namespace ImNotAFK.CoreElements
+namespace PreventLockScreen.CoreElements
 {
     public static class Controller
     {

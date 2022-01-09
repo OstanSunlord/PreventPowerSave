@@ -1,4 +1,4 @@
-﻿using ImNotAFK.CoreElements;
+﻿using PreventLockScreen.CoreElements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ImNotAFK.Client.SystemTray
+namespace PreventLockScreen.Client.SystemTray
 {
     public class NotifyIconLogic
     {

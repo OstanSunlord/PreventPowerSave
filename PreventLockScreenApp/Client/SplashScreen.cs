@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
-using ImNotAFK.Client.SystemTray;
-using ImNotAFK.CoreElements;
+using PreventLockScreen.Client.SystemTray;
+using PreventLockScreen.CoreElements;
 using Microsoft.Win32;
 
-namespace ImNotAFK.Client
+namespace PreventLockScreen.Client
 {
     public partial class SplashScreen : Form
     {

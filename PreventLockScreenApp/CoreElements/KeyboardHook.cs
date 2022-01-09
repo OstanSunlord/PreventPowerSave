@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ImNotAFK.CoreElements
+namespace PreventLockScreen.CoreElements
 {
     public sealed class KeyboardHook : IDisposable
     {

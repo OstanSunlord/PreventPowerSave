@@ -1,4 +1,4 @@
-﻿using ImNotAFK.CoreElements;
+﻿using PreventLockScreen.CoreElements;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ImNotAFK.Client
+namespace PreventLockScreen.Client
 {
     public partial class AddOrEditSchedulerDialog : BaseDialog
     {

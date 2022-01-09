@@ -1,5 +1,5 @@
-﻿using ImNotAFK.CoreElements;
-using ImNotAFK.CoreElements.State;
+﻿using PreventLockScreen.CoreElements;
+using PreventLockScreen.CoreElements.State;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ImNotAFK.Client
+namespace PreventLockScreen.Client
 {
     public partial class SchedulerDialog : BaseDialog
     {

@@ -1,9 +1,9 @@
-﻿using ImNotAFK.CoreElements;
-using ImNotAFK.CoreElements.State;
+﻿using PreventLockScreen.CoreElements;
+using PreventLockScreen.CoreElements.State;
 using System;
 using System.Windows.Forms;
 
-namespace ImNotAFK.Client
+namespace PreventLockScreen.Client
 {
     public partial class ConfigurationDialog : BaseDialog
     {

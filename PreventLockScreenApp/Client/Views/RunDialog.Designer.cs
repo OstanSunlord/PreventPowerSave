@@ -1,5 +1,5 @@
 ﻿
-namespace ImNotAFK.Client
+namespace PreventLockScreen.Client
 {
     partial class RunDialog
     {
@@ -30,13 +30,13 @@ namespace ImNotAFK.Client
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.btnClose = new ImNotAFK.Client.AButton(this.components);
-            this.btnConfig = new ImNotAFK.Client.AButton(this.components);
-            this.bthStartAndStop = new ImNotAFK.Client.AButton(this.components);
+            this.btnClose = new PreventLockScreen.Client.AButton(this.components);
+            this.btnConfig = new PreventLockScreen.Client.AButton(this.components);
+            this.bthStartAndStop = new PreventLockScreen.Client.AButton(this.components);
             this.pbWorkingStatus = new System.Windows.Forms.ProgressBar();
             this.lbEndTimeContext = new System.Windows.Forms.Label();
             this.lbStatusContext = new System.Windows.Forms.Label();
-            this.btnScheduler = new ImNotAFK.Client.AButton(this.components);
+            this.btnScheduler = new PreventLockScreen.Client.AButton(this.components);
             this.SuspendLayout();
             // 
             // btnClose

@@ -1,7 +1,7 @@
-﻿using ImNotAFK.CoreElements.State;
+﻿using PreventLockScreen.CoreElements.State;
 using System;
 
-namespace ImNotAFK.CoreElements
+namespace PreventLockScreen.CoreElements
 {
     public class StateChangedEventArgs : EventArgs
     {

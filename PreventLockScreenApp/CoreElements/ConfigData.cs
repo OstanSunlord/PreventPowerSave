@@ -1,9 +1,9 @@
-﻿using ImNotAFK.CoreElements.State;
+﻿using PreventLockScreen.CoreElements.State;
 using System;
 using System.IO;
 using System.Xml.Serialization;
 
-namespace ImNotAFK.CoreElements
+namespace PreventLockScreen.CoreElements
 {
     public class ConfigData
     {

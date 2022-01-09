@@ -1,4 +1,4 @@
-﻿using ImNotAFK.CoreElements.State;
+﻿using PreventLockScreen.CoreElements.State;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 
-namespace ImNotAFK.CoreElements
+namespace PreventLockScreen.CoreElements
 {
     public class CurrentLogic
     {

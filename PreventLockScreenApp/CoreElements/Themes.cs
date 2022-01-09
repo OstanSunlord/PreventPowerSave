@@ -1,5 +1,5 @@
-﻿using ImNotAFK.CoreElements;
-using ImNotAFK.CoreElements.State;
+﻿using PreventLockScreen.CoreElements;
+using PreventLockScreen.CoreElements.State;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ImNotAFK.CoreElements
+namespace PreventLockScreen.CoreElements
 {
     public static class Themes
     {

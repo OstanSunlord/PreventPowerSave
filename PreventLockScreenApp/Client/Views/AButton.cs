@@ -1,10 +1,10 @@
-﻿using ImNotAFK.CoreElements;
+﻿using PreventLockScreen.CoreElements;
 using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace ImNotAFK.Client
+namespace PreventLockScreen.Client
 {
     public partial class AButton : Button
     {

@@ -1,5 +1,5 @@
 ﻿
-namespace ImNotAFK.Client
+namespace PreventLockScreen.Client
 {
     partial class SchedulerDialog
     {
@@ -30,15 +30,15 @@ namespace ImNotAFK.Client
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.btnClose = new ImNotAFK.Client.AButton(this.components);
-            this.btnAmend = new ImNotAFK.Client.AButton(this.components);
+            this.btnClose = new PreventLockScreen.Client.AButton(this.components);
+            this.btnAmend = new PreventLockScreen.Client.AButton(this.components);
             this.dgvScheduler = new System.Windows.Forms.DataGridView();
             this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StartTid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EndTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnAdd = new ImNotAFK.Client.AButton(this.components);
-            this.btnEdit = new ImNotAFK.Client.AButton(this.components);
-            this.btnDelete = new ImNotAFK.Client.AButton(this.components);
+            this.btnAdd = new PreventLockScreen.Client.AButton(this.components);
+            this.btnEdit = new PreventLockScreen.Client.AButton(this.components);
+            this.btnDelete = new PreventLockScreen.Client.AButton(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvScheduler)).BeginInit();
             this.SuspendLayout();
             // 

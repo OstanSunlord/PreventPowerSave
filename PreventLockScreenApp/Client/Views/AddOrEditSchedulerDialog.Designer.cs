@@ -1,5 +1,5 @@
 ﻿
-namespace ImNotAFK.Client
+namespace PreventLockScreen.Client
 {
     partial class AddOrEditSchedulerDialog
     {
@@ -36,8 +36,8 @@ namespace ImNotAFK.Client
             this.txTitle = new System.Windows.Forms.TextBox();
             this.nubStart = new System.Windows.Forms.NumericUpDown();
             this.nubEnd = new System.Windows.Forms.NumericUpDown();
-            this.btnCancel = new ImNotAFK.Client.AButton(this.components);
-            this.btnAmend = new ImNotAFK.Client.AButton(this.components);
+            this.btnCancel = new PreventLockScreen.Client.AButton(this.components);
+            this.btnAmend = new PreventLockScreen.Client.AButton(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.nubStart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nubEnd)).BeginInit();
             this.SuspendLayout();

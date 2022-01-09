@@ -1,4 +1,4 @@
-﻿namespace ImNotAFK.CoreElements
+﻿namespace PreventLockScreen.CoreElements
 {
     public class SchedulerItem
     {

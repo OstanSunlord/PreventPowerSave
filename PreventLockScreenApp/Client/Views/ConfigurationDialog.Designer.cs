@@ -1,5 +1,5 @@
 ﻿
-namespace ImNotAFK.Client
+namespace PreventLockScreen.Client
 {
     partial class ConfigurationDialog
     {
