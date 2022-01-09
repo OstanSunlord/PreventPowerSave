@@ -1,4 +1,5 @@
 ﻿using ImNotAFK.Client;
+using ImNotAFK.Client.SystemTray.NotifyMenuItem;
 using System;
 using System.Windows.Forms;
 
@@ -8,6 +9,8 @@ namespace ImNotAFK.CoreElements
     {
         public static ConfigData ConfigData { get; set; } = new ConfigData();
         public static ConfigurationDialog ConfigurationDialog { get; set; } = null;
+        public static SchedulerCollection Schedulers { get; set; } = new SchedulerCollection();
+        public static SchedulerDialog SchedulerDialog { get; set; } = null;
         public static RunDialog RunDialog { get; set; } = null;
         public static CurrentLogic CurrentLogic { get; } = new CurrentLogic();
 
@@ -48,6 +51,41 @@ namespace ImNotAFK.CoreElements
                 return;
             }
         }
+
+        internal static void ShowSchedulerDialog(FormStartPosition formStartPosition)
+             => ShowSchedulerDialog(formStartPosition, true);
+        private static void ShowSchedulerDialog(FormStartPosition formStartPosition, bool firstRun)
+        {
+            try
+            {
+                if(SchedulerDialog == null)
+                {
+                    SchedulerDialog = new SchedulerDialog(ConfigData, "Time Scheduler")
+                    {
+                        StartPosition = formStartPosition
+                    };
+                }
+
+                if(SchedulerDialog.ShowDialog() == DialogResult.Yes)
+                {
+                    Schedulers.Override(SchedulerDialog.GetSchedulerList());
+                    ConfigData.SetScheduler(Schedulers.GetConfigString());
+                    ConfigData.Save();
+                }
+
+                SchedulerDialog.Dispose();
+            }
+            catch(ObjectDisposedException e)
+            {
+                SchedulerDialog = null;
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+
+                if (!firstRun) throw e;
+                ShowSchedulerDialog(formStartPosition, false);
+            }
+        }
+
 
         internal static void ShowRunDialog(object sender) =>
             ShowRunDialog(sender, true);

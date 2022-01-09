@@ -17,6 +17,8 @@ namespace ImNotAFK.CoreElements
         public THEMEMODE_STATE ThemeMode { get; set; } = THEMEMODE_STATE.LightMode;
         [XmlAttribute("tray")]
         public bool RunInSystemTray { get; set; } = true;
+        [XmlAttribute("scheduler")]
+        public string Scheduler { get; set; } = string.Empty;
 
         public event EventHandler<EventArgs> Saved;
         public event EventHandler<EventArgs> Loaded;
@@ -24,6 +26,8 @@ namespace ImNotAFK.CoreElements
         public event EventHandler<EventArgs> RunInSystemTrayChanged;
 
         public event EventHandler<EventArgs> ThemeChanged;
+        public event EventHandler<EventArgs> SchedulerChanged;
+
 
         public void Save()
         {
@@ -51,6 +55,8 @@ namespace ImNotAFK.CoreElements
             ThemeMode = data.ThemeMode;
             RunOnStartUp = data.RunOnStartUp;
             RunInSystemTray = data.RunInSystemTray;
+            Scheduler = data.Scheduler;
+            Controller.Schedulers.Load(Scheduler);
 
             Loaded?.Invoke(this, EventArgs.Empty);
         }
@@ -80,6 +86,15 @@ namespace ImNotAFK.CoreElements
             {
                 ThemeMode = theme;
                 ThemeChanged.Invoke(this, EventArgs.Empty);
+            }
+        }
+
+        internal void SetScheduler(string scheduler)
+        {
+            if(Scheduler != scheduler)
+            {
+                Scheduler = scheduler;
+                SchedulerChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 

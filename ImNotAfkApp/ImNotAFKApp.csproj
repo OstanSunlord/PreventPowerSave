@@ -51,6 +51,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Client\SystemTray\NotifyMenuItem\SchedulerNTCommand.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Client\Views\AButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -69,7 +72,15 @@
     <Compile Include="Client\Views\RunDialog.Designer.cs">
       <DependentUpon>RunDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Client\Views\SchedulerDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Client\Views\SchedulerDialog.Designer.cs">
+      <DependentUpon>SchedulerDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="CoreElements\KeyboardHook.cs" />
+    <Compile Include="CoreElements\SchedulerCollection.cs" />
+    <Compile Include="CoreElements\SchedulerItem.cs" />
     <Compile Include="CoreElements\Themes.cs" />
     <Compile Include="CoreElements\ConfigData.cs" />
     <Compile Include="Client\Views\ConfigurationDialog.cs">
@@ -117,6 +128,9 @@
     <EmbeddedResource Include="Client\Views\RunDialog.resx">
       <DependentUpon>RunDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Client\Views\SchedulerDialog.resx">
+      <DependentUpon>SchedulerDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -152,6 +166,9 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications">
       <Version>7.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.1</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

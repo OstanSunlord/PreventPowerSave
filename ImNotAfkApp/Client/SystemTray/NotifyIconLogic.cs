@@ -41,6 +41,7 @@ namespace ImNotAFK.Client.SystemTray
                 new NotifyMenuItem.StartNTCommand(),
                 new NotifyMenuItem.StopNTCommand(),
                 new MenuItem("-"),
+                new NotifyMenuItem.SchedulerNTCommand(),
                 new NotifyMenuItem.ConfigurationNTCommand(),
                 new MenuItem("-"),
                 new MenuItem("Exit", Exit)
