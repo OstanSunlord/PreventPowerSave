@@ -30,7 +30,6 @@ namespace PreventLockScreen.Client
         private void InitializeComponent()
         {
             this.PictureBoxSplashScreen = new System.Windows.Forms.PictureBox();
-            this.lbLoadingText = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxSplashScreen)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,23 +44,11 @@ namespace PreventLockScreen.Client
             this.PictureBoxSplashScreen.TabIndex = 0;
             this.PictureBoxSplashScreen.TabStop = false;
             // 
-            // lbLoadingText
-            // 
-            this.lbLoadingText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbLoadingText.AutoSize = true;
-            this.lbLoadingText.BackColor = System.Drawing.Color.White;
-            this.lbLoadingText.Location = new System.Drawing.Point(334, 9);
-            this.lbLoadingText.Name = "lbLoadingText";
-            this.lbLoadingText.Size = new System.Drawing.Size(54, 13);
-            this.lbLoadingText.TabIndex = 1;
-            this.lbLoadingText.Text = "Loading...";
-            // 
             // SplashScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(400, 225);
-            this.Controls.Add(this.lbLoadingText);
             this.Controls.Add(this.PictureBoxSplashScreen);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "SplashScreen";
@@ -72,13 +59,11 @@ namespace PreventLockScreen.Client
             this.Shown += new System.EventHandler(this.SplashScreen_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxSplashScreen)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.PictureBox PictureBoxSplashScreen;
-        private System.Windows.Forms.Label lbLoadingText;
     }
 }

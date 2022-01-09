@@ -1917,12 +1917,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_7365389D2B99470E945AAFD22AD71A74"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_7570DD1ACFF715BA19D5CE342C87AA1E"
         "OwnerKey" = "8:_D1651FB9090146D893704216490E40CE"
         "MsmSig" = "8:_UNDEFINED"
@@ -2489,6 +2483,12 @@
         {
         "MsmKey" = "8:_7B1D87AB5BE359EB3E2209600646918A"
         "OwnerKey" = "8:_D1651FB9090146D893704216490E40CE"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7FB7933DFBA64FB4B470A7C9A7EAC80D"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -3118,6 +3118,12 @@
         "Entry"
         {
         "MsmKey" = "8:_B2C48D335397874207A91516A16D1EF7"
+        "OwnerKey" = "8:_D1651FB9090146D893704216490E40CE"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B5280B472E005A64DE7798C96F623B87"
         "OwnerKey" = "8:_D1651FB9090146D893704216490E40CE"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -4480,13 +4486,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_ADEFDBB1CA99610E78C543A5A00BF7CF"
+        "OwnerKey" = "8:_D1651FB9090146D893704216490E40CE"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D1651FB9090146D893704216490E40CE"
+        "OwnerKey" = "8:_B5280B472E005A64DE7798C96F623B87"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -5045,12 +5051,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_F96096D706D68E816416A5FB3ED704AC"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_06B36A475E232640BC18118406D362E1"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -5695,6 +5695,18 @@
         "OwnerKey" = "8:_910D02845E76FD315203D650208439A8"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_ADEFDBB1CA99610E78C543A5A00BF7CF"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_06B36A475E232640BC18118406D362E1"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -5713,6 +5725,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -5729,6 +5749,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -8641,26 +8669,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7365389D2B99470E945AAFD22AD71A74"
-            {
-            "SourcePath" = "8:..\\ImNotAfkApp\\Resources\\lightning.ico"
-            "TargetName" = "8:lightning.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_FB8E7D30F9274FF2AF008AC8F1746613"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7570DD1ACFF715BA19D5CE342C87AA1E"
             {
             "AssemblyRegister" = "3:1"
@@ -8969,6 +8977,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7FB7933DFBA64FB4B470A7C9A7EAC80D"
+            {
+            "SourcePath" = "8:..\\PreventLockScreenApp\\Resources\\lightning.ico"
+            "TargetName" = "8:lightning.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_FB8E7D30F9274FF2AF008AC8F1746613"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_81ADA234640ED055D21B683C895586D5"
@@ -10070,6 +10098,37 @@
                     }
                 }
             "SourcePath" = "8:Windows.Services.Maps.GuidanceContract.winmd"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_FB8E7D30F9274FF2AF008AC8F1746613"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B5280B472E005A64DE7798C96F623B87"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_B5280B472E005A64DE7798C96F623B87"
+                    {
+                    "Name" = "8:Newtonsoft.Json.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Newtonsoft.Json.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_FB8E7D30F9274FF2AF008AC8F1746613"
@@ -12126,7 +12185,7 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:I'm not AFK"
+        "ProductName" = "8:Prevent Lock Screen"
         "ProductCode" = "8:{6EFF0BEB-DD95-458B-8FFC-D80BCAC2DA51}"
         "PackageCode" = "8:{0BE94AED-63F0-4A01-A7CC-17E8B161EF11}"
         "UpgradeCode" = "8:{848711E1-EC98-4C36-BFA5-EACBD57B8111}"
@@ -12145,7 +12204,7 @@
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:This App prevent windows from locking screen (policy-enforced)"
         "ARPURLINFOABOUT" = "8:http://www.swn.nu"
-        "ARPPRODUCTICON" = "8:_7365389D2B99470E945AAFD22AD71A74"
+        "ARPPRODUCTICON" = "8:_7FB7933DFBA64FB4B470A7C9A7EAC80D"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -12250,7 +12309,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_4C79277358B7469C92350B0746534C3E"
             {
-            "Name" = "8:I'm not AFK"
+            "Name" = "8:Prevent Lock Screen"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -12259,12 +12318,12 @@
             "Target" = "8:_D1651FB9090146D893704216490E40CE"
             "Folder" = "8:_C20FD418E7F044CCAF026526D56D9C29"
             "WorkingFolder" = "8:_FB8E7D30F9274FF2AF008AC8F1746613"
-            "Icon" = "8:_7365389D2B99470E945AAFD22AD71A74"
+            "Icon" = "8:_7FB7933DFBA64FB4B470A7C9A7EAC80D"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_D165A791826D4CC88C039E2CA817A413"
             {
-            "Name" = "8:I'm not AFK"
+            "Name" = "8:Prevent Lock Screen"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -12273,7 +12332,7 @@
             "Target" = "8:_D1651FB9090146D893704216490E40CE"
             "Folder" = "8:_2065B5C4653541D28B271D7C2C91A592"
             "WorkingFolder" = "8:_FB8E7D30F9274FF2AF008AC8F1746613"
-            "Icon" = "8:_7365389D2B99470E945AAFD22AD71A74"
+            "Icon" = "8:_7FB7933DFBA64FB4B470A7C9A7EAC80D"
             "Feature" = "8:"
             }
         }
@@ -12677,7 +12736,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_D1651FB9090146D893704216490E40CE"
             {
-            "SourcePath" = "8:..\\ImNotAfkApp\\obj\\Debug\\ImNotAfk.exe"
+            "SourcePath" = "8:..\\PreventLockScreenApp\\obj\\Debug\\PreventLockScreen.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_FB8E7D30F9274FF2AF008AC8F1746613"
