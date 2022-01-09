@@ -14,20 +14,19 @@ namespace ImNotAFK.Client
 {
     public partial class RunDialog : BaseDialog
     {
+
         public RunDialog()
         {
             InitializeComponent();
 
             UpdateStartAndStopButton();
-            InitProgressBar(Controller.ConfigData.Interval * Controller.CurrentLogic.TickInterval);
+            InitProgressBar();
 
             Controller.CurrentLogic.Started += CurrentLogic_Started;
             Controller.CurrentLogic.Stoped += CurrentLogic_Stoped;
             Controller.CurrentLogic.Elapsed += CurrentLogic_Elapsed;
 
             ResetDisplay();   
-            
-
         }
 
         public RunDialog(object sender) : this()
@@ -37,6 +36,9 @@ namespace ImNotAFK.Client
                 StartPosition = FormStartPosition.CenterParent;
             }
         }
+
+        public string EndTime =>
+            $"{ Controller.CurrentLogic.EndDateTime.ToShortDateString()} { Controller.CurrentLogic.EndDateTime:HH:mm}";
 
         private void CurrentLogic_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
@@ -67,10 +69,10 @@ namespace ImNotAFK.Client
             else
             {
                 Controller.CurrentLogic.Start(Controller.ConfigData.Interval);
-                InitProgressBar(Controller.ConfigData.Interval * Controller.CurrentLogic.TickInterval);
+                InitProgressBar();
             }
         }
-
+        
         private void UpdateStartAndStopButton()
         {
             if (InvokeRequired)
@@ -82,9 +84,8 @@ namespace ImNotAFK.Client
                 bthStartAndStop.Text = Controller.CurrentLogic.IsAlive ? "Stop" : "Start";
             }
 
-            lbEndTimeContext.Text = Controller.CurrentLogic.IsAlive ? Controller.CurrentLogic.EndDateTime.ToString() : string.Empty;
+            lbEndTimeContext.Text = Controller.CurrentLogic.IsAlive ? EndTime : string.Empty;
             lbStatusContext.Text = Controller.CurrentLogic.State.GetEnumDescription();
-
         }
 
         private void UpdateProgressBar()
@@ -95,24 +96,25 @@ namespace ImNotAFK.Client
             }
             else
             {
-                if (pbWorkingStatus.Value < pbWorkingStatus.Maximum)
+                if (Controller.CurrentLogic.RunningTicks <= pbWorkingStatus.Maximum)
                 {
-                    pbWorkingStatus.Value += Controller.CurrentLogic.TickInterval;
+                    pbWorkingStatus.Value = Controller.CurrentLogic.RunningTicks;
                 }
             }
         }
 
+        private void InitProgressBar() => InitProgressBar(Controller.CurrentLogic.TotalTickInterval);
         private void InitProgressBar(int max) => InitProgressBar(0, max);
         private void InitProgressBar(int min, int max)
         {
             pbWorkingStatus.Minimum = min;
-            pbWorkingStatus.Maximum = max - Controller.CurrentLogic.TickInterval;
+            pbWorkingStatus.Maximum = max;
             pbWorkingStatus.Value = 0;
         }
 
         private void ResetDisplay()
         {
-            lbEndTimeContext.Text = Controller.CurrentLogic.IsAlive ? Controller.CurrentLogic.EndDateTime.ToString() : string.Empty;
+            lbEndTimeContext.Text = Controller.CurrentLogic.IsAlive ? EndTime : string.Empty;
             lbStatusContext.Text = Controller.CurrentLogic.State.GetEnumDescription();
             pbWorkingStatus.Value = 0;
         }

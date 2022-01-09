@@ -16,16 +16,16 @@ namespace ImNotAFK.CoreElements
 
 
         private Timer m_timer = null;
+        private Timer m_schedulerTimer = null;
         private DateTime m_endDateTime;
         private DateTime m_startDateTime;
-        private static int tickInterval = 60000;
         private PROGRAM_STATE state;
 
         public event EventHandler<ElapsedEventArgs> Elapsed;
 
         internal void SwitchState(int interval)
         {
-            if(IsAlive)
+            if (IsAlive)
             {
                 Stop();
             }
@@ -50,7 +50,7 @@ namespace ImNotAFK.CoreElements
             get => state;
             set
             {
-                if(state != value)
+                if (state != value)
                 {
                     state = value;
                     StateChanged?.Invoke(this, new StateChangedEventArgs(state));
@@ -58,8 +58,41 @@ namespace ImNotAFK.CoreElements
             }
         }
 
-        public int TickInterval => tickInterval;
+        public int RunningTicks
+        {
+            get
+            {
+                if (m_startDateTime > DateTime.Now) return 0;
+                return (int)Math.Ceiling(DateTime.Now.Subtract(m_startDateTime).TotalMilliseconds);
+            }
+        }
+
+        public int TotalTickInterval
+        {
+            get
+            {
+                if (m_startDateTime > m_endDateTime) return 0;
+                return (int)Math.Ceiling(m_endDateTime.Subtract(m_startDateTime).TotalMilliseconds);
+            }
+        }
         public DateTime EndDateTime => m_endDateTime;
+
+        Timer SchedulerTimer
+        {
+            get
+            {
+                if (m_schedulerTimer == null)
+                {
+                    m_schedulerTimer = new Timer()
+                    {
+                        Interval = 1000
+                    };
+
+                    m_schedulerTimer.Elapsed += SchedulerTimer_Elapsed;
+                }
+                return m_schedulerTimer;
+            }
+        }
 
         Timer Timer
         {
@@ -69,7 +102,7 @@ namespace ImNotAFK.CoreElements
                 {
                     m_timer = new Timer()
                     {
-                        Interval = tickInterval
+                        Interval = 30000
                     };
                     m_timer.Elapsed += Timer_Elapsed;
 
@@ -81,15 +114,19 @@ namespace ImNotAFK.CoreElements
 
         public bool IsAlive => m_endDateTime > DateTime.Now;
 
-        internal void Start(int runTime)
+        internal void Start(int runTime) =>
+            Start(runTime, null);
+        internal void Start(int runTime, SchedulerItem scheduler)
         {
             m_startDateTime = DateTime.Now;
-            m_endDateTime = DateTime.Now.AddMilliseconds(runTime * tickInterval);
+            m_endDateTime = DateTime.Now.AddMinutes(runTime);
+            SchedulerTimer.Stop();
             Timer.Start();
             SetThreadExecutionState(EXECUTION_STATE.ES_DISPLAY_REQUIRED | EXECUTION_STATE.ES_CONTINUOUS);
             State = PROGRAM_STATE.Running;
-            Notifications.Show("I'm not AFK", 
-                $"Windows is prevented from locking down{Environment.NewLine}End time is set to: {m_endDateTime}");
+
+            Notifications.Show(scheduler != null ? $"Scheduler <{scheduler.Title}> I'm not AFK" : "I'm not AFK",
+                $"Windows is prevented from locking down{Environment.NewLine}End time is set to: {m_endDateTime.ToShortDateString()} {m_endDateTime.ToString("HH:mm")}");
             Started?.Invoke(this, EventArgs.Empty);
         }
 
@@ -99,6 +136,7 @@ namespace ImNotAFK.CoreElements
             {
                 m_endDateTime = DateTime.Now;
                 Timer.Stop();
+                SchedulerTimer.Start();
                 SetThreadExecutionState(EXECUTION_STATE.ES_CONTINUOUS);
                 State = PROGRAM_STATE.Idle;
 
@@ -120,5 +158,30 @@ namespace ImNotAFK.CoreElements
             Elapsed?.Invoke(sender, e);
         }
 
+        internal void StartScheduler()
+        {
+            SchedulerTimer.Start();
+        }
+
+        private void SchedulerTimer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            if (State == PROGRAM_STATE.Running) return;
+            SchedulerTimer.Stop();
+
+            var scheduler = Controller.Schedulers.GetSchedule(DateTime.Now.Hour);
+            if (scheduler != null)
+            {
+                var end = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, scheduler.End, 0, 0);
+
+                TimeSpan span = end.Subtract(DateTime.Now);
+                if (span.TotalMinutes >= 1)
+                {
+                    Start((int)Math.Ceiling(span.TotalMinutes), scheduler);
+                    scheduler.Canceled = true;
+                }
+            }
+
+            SchedulerTimer.Start();
+        }
     }
 }

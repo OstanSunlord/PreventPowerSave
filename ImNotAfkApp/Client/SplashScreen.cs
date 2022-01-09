@@ -38,7 +38,7 @@ namespace ImNotAFK.Client
         {
             waitTimer = new Timer()
             {
-                Interval = 2000,
+                Interval = 1000,
                 Enabled = true
             };
 
@@ -52,6 +52,8 @@ namespace ImNotAFK.Client
             Controller.ConfigData.RunOnStartUpChanged += ConfigData_RunOnStartUpChanged;
             Controller.ConfigData.RunInSystemTrayChanged += ConfigData_RunInSystemTrayChanged;
             Controller.ConfigData.Load();
+
+            Controller.CurrentLogic.StartScheduler();
 
             this.Hide();
 

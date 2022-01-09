@@ -14,8 +14,6 @@ namespace ImNotAFK.Client
 {
     public partial class SchedulerDialog : BaseDialog
     {
-        private ConfigData _configData;
-
         public SchedulerDialog(string text)
         {
             InitializeComponent();

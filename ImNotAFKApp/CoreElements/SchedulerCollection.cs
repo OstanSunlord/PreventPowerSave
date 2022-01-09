@@ -33,5 +33,10 @@ namespace ImNotAFK.CoreElements
             Clear();
             AddRange(schedulerItems);
         }
+
+        internal SchedulerItem GetSchedule(int hour)
+        {
+            return Find(x => x.Start <= hour && x.End > hour && !x.Canceled);
+        }
     }
 }
