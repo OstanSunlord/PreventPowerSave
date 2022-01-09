@@ -122,7 +122,7 @@ namespace PreventLockScreen.CoreElements
             m_endDateTime = DateTime.Now.AddMinutes(runTime);
             SchedulerTimer.Stop();
             Timer.Start();
-            SetThreadExecutionState(EXECUTION_STATE.ES_DISPLAY_REQUIRED | EXECUTION_STATE.ES_CONTINUOUS);
+            SetThreadExecutionState(EXECUTION_STATE.ES_CONTINUOUS | EXECUTION_STATE.ES_SYSTEM_REQUIRED | EXECUTION_STATE.ES_AWAYMODE_REQUIRED);
             State = PROGRAM_STATE.Running;
 
             Notifications.Show(scheduler != null ? $"Scheduler <{scheduler.Title}> Prevent Lockscreen" : "Prevent Lockscreen",
@@ -149,13 +149,13 @@ namespace PreventLockScreen.CoreElements
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
+            Elapsed?.Invoke(sender, e);
+
             if (IsAlive == false)
             {
                 Stop();
                 return;
             }
-
-            Elapsed?.Invoke(sender, e);
         }
 
         internal void StartScheduler()
