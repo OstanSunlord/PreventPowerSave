@@ -125,7 +125,7 @@ namespace PreventLockScreen.CoreElements
             SetThreadExecutionState(EXECUTION_STATE.ES_DISPLAY_REQUIRED | EXECUTION_STATE.ES_CONTINUOUS);
             State = PROGRAM_STATE.Running;
 
-            Notifications.Show(scheduler != null ? $"Scheduler <{scheduler.Title}> I'm not AFK" : "I'm not AFK",
+            Notifications.Show(scheduler != null ? $"Scheduler <{scheduler.Title}> Prevent Lockscreen" : "Prevent Lockscreen",
                 $"Windows is prevented from locking down{Environment.NewLine}End time is set to: {m_endDateTime.ToShortDateString()} {m_endDateTime.ToString("HH:mm")}");
             Started?.Invoke(this, EventArgs.Empty);
         }
@@ -140,7 +140,7 @@ namespace PreventLockScreen.CoreElements
                 SetThreadExecutionState(EXECUTION_STATE.ES_CONTINUOUS);
                 State = PROGRAM_STATE.Idle;
 
-                Notifications.Show("I'm not AFK",
+                Notifications.Show("Prevent Lockscreen",
                     $"Have ended after: : {(int)DateTime.Now.Subtract(m_startDateTime).TotalMinutes} Minutes");
 
                 Stoped?.Invoke(this, EventArgs.Empty);

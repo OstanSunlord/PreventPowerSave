@@ -11,7 +11,7 @@ namespace PreventLockScreen.CoreElements
     {
         public static string GetWorkingFolder()
         {
-            var parh = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "ImNotAfkApp");
+            var parh = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "PreventLockScreenApp");
 
             if(!Directory.Exists(parh))
             {

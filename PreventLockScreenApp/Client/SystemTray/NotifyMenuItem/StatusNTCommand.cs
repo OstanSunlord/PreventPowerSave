@@ -7,7 +7,7 @@ namespace PreventLockScreen.Client.SystemTray.NotifyMenuItem
     {
         internal StatusNTCommand() :base()
         {
-            Text = "I'm not AFK";
+            Text = "Prevent Lockscreen";
             Name = "Status";
             Click += StatusNTCommand_Click;
 
@@ -23,7 +23,7 @@ namespace PreventLockScreen.Client.SystemTray.NotifyMenuItem
         {
             if(sender is CurrentLogic logic)
             {
-                Text = $"I'm not AFK <{logic.State}>";                
+                Text = $"Prevent Lockscreen <{logic.State}>";                
             }            
         }
     }

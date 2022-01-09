@@ -142,7 +142,7 @@ namespace PreventLockScreen.Client
             this.MaximizeBox = false;
             this.Name = "RunDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "I\'m Not AFK";
+            this.Text = "Prevent Lockscreen";
             this.ResumeLayout(false);
             this.PerformLayout();
 
