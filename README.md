@@ -13,8 +13,7 @@ This App prevent windows from locking screen (policy-enforced)
 * Define shortcut for start and stop (Control+Alt+S) will switch run state
 * Toast notification when it starts and stops
 * Create Installer
+* Time scheduler
 
 ## Roadmap
-
-* Time scheduler - The user can say when it need to be aktiv
 * Error handling 
