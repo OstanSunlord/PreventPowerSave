@@ -96,10 +96,8 @@ namespace PreventLockScreen.Client
             }
             else
             {
-                if (Controller.CurrentLogic.RunningTicks <= pbWorkingStatus.Maximum)
-                {
-                    pbWorkingStatus.Value = Controller.CurrentLogic.RunningTicks;
-                }
+            pbWorkingStatus.Value = pbWorkingStatus.Maximum < Controller.CurrentLogic.RunningTicks ? 
+                    pbWorkingStatus.Maximum : Controller.CurrentLogic.RunningTicks;
             }
         }
 
