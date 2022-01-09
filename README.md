@@ -14,6 +14,3 @@ This App prevent windows from locking screen (policy-enforced)
 * Toast notification when it starts and stops
 * Create Installer
 * Time scheduler
-
-## Roadmap
-* Error handling 
