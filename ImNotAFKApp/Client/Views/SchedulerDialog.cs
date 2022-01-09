@@ -16,14 +16,12 @@ namespace ImNotAFK.Client
     {
         private ConfigData _configData;
 
-        public SchedulerDialog(ConfigData configData, string text)
+        public SchedulerDialog(string text)
         {
             InitializeComponent();
             Text = text;
 
-            _configData = configData;
-
-            configData.ThemeChanged += ConfigData_ThemeChanged;
+            Controller.ConfigData.ThemeChanged += ConfigData_ThemeChanged;
 
             ChangeTheme();
             InitCells();
@@ -46,16 +44,16 @@ namespace ImNotAFK.Client
         {
             dgvScheduler.BackgroundColor = SystemColors.AppWorkspace;
 
-            dgvScheduler.DefaultCellStyle.SelectionBackColor = _configData.ThemeMode == THEMEMODE_STATE.DarkMode ? SystemColors.ControlDark : Color.White;
-            dgvScheduler.DefaultCellStyle.SelectionForeColor = _configData.ThemeMode == THEMEMODE_STATE.DarkMode ? Color.White : SystemColors.ControlDark;
-            dgvScheduler.RowHeadersDefaultCellStyle.SelectionBackColor = Color.Empty;
+            //dgvScheduler.DefaultCellStyle.SelectionBackColor = Controller.ConfigData.ThemeMode != THEMEMODE_STATE.DarkMode ? SystemColors.ControlDark : Color.White;
+            //dgvScheduler.DefaultCellStyle.SelectionForeColor = Controller.ConfigData.ThemeMode != THEMEMODE_STATE.DarkMode ? Color.White : SystemColors.ControlDark;
+            //dgvScheduler.RowHeadersDefaultCellStyle.SelectionBackColor = Color.Yellow;
 
-            dgvScheduler.RowsDefaultCellStyle.BackColor = _configData.ThemeMode == THEMEMODE_STATE.DarkMode ? SystemColors.ControlDark : Color.White;
-            dgvScheduler.AlternatingRowsDefaultCellStyle.BackColor = _configData.ThemeMode == THEMEMODE_STATE.DarkMode ? SystemColors.ControlDark : Color.White;
+            dgvScheduler.RowsDefaultCellStyle.BackColor = Controller.ConfigData.ThemeMode == THEMEMODE_STATE.DarkMode ? SystemColors.ControlDark : Color.White;
+            dgvScheduler.AlternatingRowsDefaultCellStyle.BackColor = Controller.ConfigData.ThemeMode == THEMEMODE_STATE.DarkMode ? SystemColors.ControlDark : Color.White;
 
-            dgvScheduler.ColumnHeadersDefaultCellStyle.ForeColor = _configData.ThemeMode != THEMEMODE_STATE.DarkMode ? Color.White : Color.Black;
-            dgvScheduler.ColumnHeadersDefaultCellStyle.BackColor = _configData.ThemeMode == THEMEMODE_STATE.DarkMode ? Color.White : Color.Black;
-            dgvScheduler.RowHeadersDefaultCellStyle.BackColor = _configData.ThemeMode == THEMEMODE_STATE.DarkMode ? Color.White : Color.Black; ;
+            dgvScheduler.ColumnHeadersDefaultCellStyle.ForeColor = Controller.ConfigData.ThemeMode != THEMEMODE_STATE.DarkMode ? Color.White : Color.Black;
+            dgvScheduler.ColumnHeadersDefaultCellStyle.BackColor = Controller.ConfigData.ThemeMode == THEMEMODE_STATE.DarkMode ? Color.White : Color.Black;
+            dgvScheduler.RowHeadersDefaultCellStyle.BackColor = Controller.ConfigData.ThemeMode == THEMEMODE_STATE.DarkMode ? Color.White : Color.Black; ;
 
         }
 
@@ -101,6 +99,55 @@ namespace ImNotAFK.Client
             }
 
             return list;
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            AddOrEditSchedulerDialog dialog = new AddOrEditSchedulerDialog("Add Schedule")
+            {
+                StartPosition = FormStartPosition.CenterParent
+            };
+
+            if (dialog.ShowDialog() == DialogResult.Yes)
+            {
+                int start = dialog.Start;
+                int end = dialog.End;
+                if (start == end && start == 0) end = 24;
+                if (start == end && start != 24) end++;
+                if (start == end && start != 0) start--;
+
+                dgvScheduler.Rows.Add(dialog.Title, start, end);
+            }
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            if (dgvScheduler.SelectedRows.Count > 0)
+            {
+                AddOrEditSchedulerDialog dialog = new AddOrEditSchedulerDialog("Edit Schedule")
+                {
+                    StartPosition = FormStartPosition.CenterParent
+                };
+
+                dialog.Title = dgvScheduler.SelectedRows[0].Cells[0].Value.ToString();
+                dialog.SetStart(dgvScheduler.SelectedRows[0].Cells[1].Value.ToString());
+                dialog.SetEnd(dgvScheduler.SelectedRows[0].Cells[2].Value.ToString());
+
+                if (dialog.ShowDialog() == DialogResult.Yes)
+                {
+                    dgvScheduler.SelectedRows[0].Cells[0].Value = dialog.Title;
+                    dgvScheduler.SelectedRows[0].Cells[1].Value = dialog.Start;
+                    dgvScheduler.SelectedRows[0].Cells[2].Value = dialog.End;
+                }
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (dgvScheduler.SelectedRows.Count > 0)
+            {
+                dgvScheduler.Rows.Remove(dgvScheduler.SelectedRows[0]);
+            }
         }
     }
 }

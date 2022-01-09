@@ -60,6 +60,12 @@
     <Compile Include="Client\Views\AButton.Designer.cs">
       <DependentUpon>AButton.cs</DependentUpon>
     </Compile>
+    <Compile Include="Client\Views\AddOrEditSchedulerDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Client\Views\AddOrEditSchedulerDialog.Designer.cs">
+      <DependentUpon>AddOrEditSchedulerDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Client\Views\BaseDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +125,9 @@
     </Compile>
     <Compile Include="ExtensionMethods\EnumExtensionMethods.cs" />
     <Compile Include="CoreElements\Notifications.cs" />
+    <EmbeddedResource Include="Client\Views\AddOrEditSchedulerDialog.resx">
+      <DependentUpon>AddOrEditSchedulerDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Client\Views\BaseDialog.resx">
       <DependentUpon>BaseDialog.cs</DependentUpon>
     </EmbeddedResource>

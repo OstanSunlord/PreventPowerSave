@@ -60,7 +60,7 @@ namespace ImNotAFK.CoreElements
             {
                 if(SchedulerDialog == null)
                 {
-                    SchedulerDialog = new SchedulerDialog(ConfigData, "Time Scheduler")
+                    SchedulerDialog = new SchedulerDialog("Time Scheduler")
                     {
                         StartPosition = formStartPosition
                     };
