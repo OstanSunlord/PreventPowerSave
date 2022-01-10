@@ -99,7 +99,7 @@ namespace PreventLockScreen.Client
 
         private void SplashScreen_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (Controller.CurrentLogic.IsAlive)
+            if (Controller.CurrentLogic.State == CoreElements.State.PROGRAM_STATE.Running)
                 Controller.CurrentLogic.Stop();
 
 

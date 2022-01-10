@@ -14,7 +14,6 @@ namespace PreventLockScreen.CoreElements
         [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         static extern EXECUTION_STATE SetThreadExecutionState(EXECUTION_STATE esFlags);
 
-
         private Timer m_timer = null;
         private Timer m_schedulerTimer = null;
         private DateTime m_endDateTime;
@@ -25,7 +24,7 @@ namespace PreventLockScreen.CoreElements
 
         internal void SwitchState(int interval)
         {
-            if (IsAlive)
+            if (state == PROGRAM_STATE.Running)
             {
                 Stop();
             }
@@ -94,7 +93,7 @@ namespace PreventLockScreen.CoreElements
             }
         }
 
-        Timer Timer
+        Timer MainTimer
         {
             get
             {
@@ -104,54 +103,53 @@ namespace PreventLockScreen.CoreElements
                     {
                         Interval = 30000
                     };
-                    m_timer.Elapsed += Timer_Elapsed;
+                    m_timer.Elapsed += MainTimer_Elapsed;
 
                 }
-
                 return m_timer;
             }
         }
-
-        public bool IsAlive => m_endDateTime > DateTime.Now;
 
         internal void Start(int runTime) =>
             Start(runTime, null);
         internal void Start(int runTime, SchedulerItem scheduler)
         {
-            m_startDateTime = DateTime.Now;
-            m_endDateTime = DateTime.Now.AddMinutes(runTime);
-            SchedulerTimer.Stop();
-            Timer.Start();
-            SetThreadExecutionState(EXECUTION_STATE.ES_DISPLAY_REQUIRED | EXECUTION_STATE.ES_CONTINUOUS);
-            State = PROGRAM_STATE.Running;
+            if (State == PROGRAM_STATE.Idle)
+            {
+                m_startDateTime = DateTime.Now;
+                m_endDateTime = DateTime.Now.AddMinutes(runTime);
+                SchedulerTimer.Stop();
+                MainTimer.Start();
+                SetThreadExecutionState(EXECUTION_STATE.ES_DISPLAY_REQUIRED | EXECUTION_STATE.ES_CONTINUOUS);
+                State = PROGRAM_STATE.Running;
 
-            Notifications.Show(scheduler != null ? $"Scheduler <{scheduler.Title}> {Controller.ScreenName}" : Controller.ScreenName,
-                $"Windows is prevented from locking down{Environment.NewLine}End time is set to: {m_endDateTime.ToShortDateString()} {m_endDateTime.ToString("HH:mm")}");
-            Started?.Invoke(this, EventArgs.Empty);
+                Notifications.Show(scheduler != null ? $"Scheduler <{scheduler.Title}> {Controller.ScreenName}" : Controller.ScreenName,
+                    $"Windows is prevented from locking down{Environment.NewLine}End time is set to: {m_endDateTime.ToShortDateString()} {m_endDateTime.ToString("HH:mm")}");
+                Started?.Invoke(this, EventArgs.Empty);
+            }
         }
-
         internal void Stop()
         {
             if (State != PROGRAM_STATE.Idle)
             {
                 m_endDateTime = DateTime.Now;
-                Timer.Stop();
+                MainTimer.Stop();
                 SchedulerTimer.Start();
                 SetThreadExecutionState(EXECUTION_STATE.ES_CONTINUOUS);
                 State = PROGRAM_STATE.Idle;
 
                 Notifications.Show(Controller.ScreenName,
-                    $"Have ended after: : {(int)DateTime.Now.Subtract(m_startDateTime).TotalMinutes} Minutes");
+                    $"Have ended after: {(int)DateTime.Now.Subtract(m_startDateTime).TotalMinutes} Minutes");
 
                 Stoped?.Invoke(this, EventArgs.Empty);
             }
         }
 
-        private void Timer_Elapsed(object sender, ElapsedEventArgs e)
+        private void MainTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
             Elapsed?.Invoke(sender, e);
 
-            if (IsAlive == false)
+            if (m_endDateTime <= DateTime.Now)
             {
                 Stop();
                 return;
@@ -165,23 +163,25 @@ namespace PreventLockScreen.CoreElements
 
         private void SchedulerTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            if (State == PROGRAM_STATE.Running) return;
-            SchedulerTimer.Stop();
-
-            var scheduler = Controller.Schedulers.GetSchedule(DateTime.Now.Hour);
-            if (scheduler != null)
+            if (State == PROGRAM_STATE.Idle)
             {
-                var end = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, scheduler.End, 0, 0);
+                SchedulerTimer.Stop();
 
-                TimeSpan span = end.Subtract(DateTime.Now);
-                if (span.TotalMinutes >= 1)
+                var scheduler = Controller.Schedulers.GetSchedule(DateTime.Now.Hour);
+                if (scheduler != null)
                 {
-                    Start((int)Math.Ceiling(span.TotalMinutes), scheduler);
-                    scheduler.Canceled = true;
-                }
-            }
+                    var end = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, scheduler.End, 0, 0);
 
-            SchedulerTimer.Start();
+                    TimeSpan span = end.Subtract(DateTime.Now);
+                    if (span.TotalMinutes >= 1)
+                    {
+                        Start((int)Math.Ceiling(span.TotalMinutes), scheduler);
+                        scheduler.Canceled = true;
+                    }
+                }
+
+                SchedulerTimer.Start();
+            }
         }
     }
 }

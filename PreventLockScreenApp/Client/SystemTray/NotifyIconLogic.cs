@@ -27,14 +27,14 @@ namespace PreventLockScreen.Client.SystemTray
                     ContextMenu = GetContextMenu(),
                     Text = text
                 };
-                _trayIcon.Click += TrayIcon_Click;
+                _trayIcon.DoubleClick += TrayIcon_DoubleClick;
             }
 
             _trayIcon.Visible = true;
             return _trayIcon;
         }
 
-        private static void TrayIcon_Click(object sender, EventArgs e)
+        private static void TrayIcon_DoubleClick(object sender, EventArgs e)
         {
             Controller.ShowRunDialog(sender);
         }

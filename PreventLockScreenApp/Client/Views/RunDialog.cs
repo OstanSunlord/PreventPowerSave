@@ -64,7 +64,7 @@ namespace PreventLockScreen.Client
 
         private void bthStartAndStop_Click(object sender, EventArgs e)
         {
-            if (Controller.CurrentLogic.IsAlive)
+            if (Controller.CurrentLogic.State == CoreElements.State.PROGRAM_STATE.Running)
             {
                 Controller.CurrentLogic.Stop();
             }
@@ -83,7 +83,7 @@ namespace PreventLockScreen.Client
             }
             else
             {
-                bthStartAndStop.Text = Controller.CurrentLogic.IsAlive ? "Stop" : "Start";
+                bthStartAndStop.Text = Controller.CurrentLogic.State == CoreElements.State.PROGRAM_STATE.Running ? "Stop" : "Start";
             }
         }
 
@@ -95,7 +95,7 @@ namespace PreventLockScreen.Client
             }
             else
             {
-                lbEndTimeContext.Text = Controller.CurrentLogic.IsAlive ? EndTime : string.Empty;
+                lbEndTimeContext.Text = Controller.CurrentLogic.State == CoreElements.State.PROGRAM_STATE.Running  ? EndTime : string.Empty;
                 Text = $"{Controller.ScreenName} : {Controller.CurrentLogic.State.GetEnumDescription()}";
             }
         }
