@@ -14,12 +14,12 @@ namespace PreventLockScreen.Client
 {
     public partial class RunDialog : BaseDialog
     {
-
         public RunDialog()
         {
             InitializeComponent();
-
+            
             UpdateStartAndStopButton();
+            UpdateContext();
             InitProgressBar();
 
             Controller.CurrentLogic.Started += CurrentLogic_Started;
@@ -38,7 +38,7 @@ namespace PreventLockScreen.Client
         }
 
         public string EndTime =>
-            $"{ Controller.CurrentLogic.EndDateTime.ToShortDateString()} { Controller.CurrentLogic.EndDateTime:HH:mm}";
+            $"End Time: { Controller.CurrentLogic.EndDateTime.ToShortDateString()} { Controller.CurrentLogic.EndDateTime:HH:mm}";
 
         private void CurrentLogic_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
@@ -47,12 +47,14 @@ namespace PreventLockScreen.Client
 
         private void CurrentLogic_Stoped(object sender, EventArgs e)
         {
-            UpdateStartAndStopButton();            
+            UpdateStartAndStopButton();
+            UpdateContext();
         }
 
         private void CurrentLogic_Started(object sender, EventArgs e)
         {
             UpdateStartAndStopButton();
+            UpdateContext();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -83,9 +85,19 @@ namespace PreventLockScreen.Client
             {
                 bthStartAndStop.Text = Controller.CurrentLogic.IsAlive ? "Stop" : "Start";
             }
+        }
 
-            lbEndTimeContext.Text = Controller.CurrentLogic.IsAlive ? EndTime : string.Empty;
-            lbStatusContext.Text = Controller.CurrentLogic.State.GetEnumDescription();
+        private void UpdateContext()
+        {
+            if (InvokeRequired)
+            {
+                Invoke((Action)delegate { UpdateContext(); });
+            }
+            else
+            {
+                lbEndTimeContext.Text = Controller.CurrentLogic.IsAlive ? EndTime : string.Empty;
+                Text = $"Prevent Lockscreen : {Controller.CurrentLogic.State.GetEnumDescription()}";
+            }
         }
 
         private void UpdateProgressBar()
@@ -112,8 +124,7 @@ namespace PreventLockScreen.Client
 
         private void ResetDisplay()
         {
-            lbEndTimeContext.Text = Controller.CurrentLogic.IsAlive ? EndTime : string.Empty;
-            lbStatusContext.Text = Controller.CurrentLogic.State.GetEnumDescription();
+            UpdateContext();
             pbWorkingStatus.Value = 0;
         }
 

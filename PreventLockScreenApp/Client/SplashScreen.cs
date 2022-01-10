@@ -97,6 +97,12 @@ namespace PreventLockScreen.Client
             }
         }
 
+        private void SplashScreen_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (Controller.CurrentLogic.IsAlive)
+                Controller.CurrentLogic.Stop();
 
+
+        }
     }
 }

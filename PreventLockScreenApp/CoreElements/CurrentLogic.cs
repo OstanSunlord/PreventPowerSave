@@ -122,7 +122,7 @@ namespace PreventLockScreen.CoreElements
             m_endDateTime = DateTime.Now.AddMinutes(runTime);
             SchedulerTimer.Stop();
             Timer.Start();
-            SetThreadExecutionState(EXECUTION_STATE.ES_CONTINUOUS | EXECUTION_STATE.ES_SYSTEM_REQUIRED);
+            SetThreadExecutionState(EXECUTION_STATE.ES_DISPLAY_REQUIRED | EXECUTION_STATE.ES_CONTINUOUS);
             State = PROGRAM_STATE.Running;
 
             Notifications.Show(scheduler != null ? $"Scheduler <{scheduler.Title}> Prevent Lockscreen" : "Prevent Lockscreen",
