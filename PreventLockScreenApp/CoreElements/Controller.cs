@@ -7,6 +7,8 @@ namespace PreventLockScreen.CoreElements
 {
     public static class Controller
     {
+        public const string ScreenName = "Prevent Lockscreen";
+
         public static ConfigData ConfigData { get; set; } = new ConfigData();
         public static ConfigurationDialog ConfigurationDialog { get; set; } = null;
         public static SchedulerCollection Schedulers { get; set; } = new SchedulerCollection();

@@ -59,7 +59,7 @@ namespace PreventLockScreen.Client
 
             if (Controller.ConfigData.RunInSystemTray)
             {
-                QuickMenu = NotifyIconLogic.GetNotify();
+                QuickMenu = NotifyIconLogic.GetNotify(Controller.ScreenName);
             }
             else
             {

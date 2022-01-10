@@ -96,7 +96,7 @@ namespace PreventLockScreen.Client
             else
             {
                 lbEndTimeContext.Text = Controller.CurrentLogic.IsAlive ? EndTime : string.Empty;
-                Text = $"Prevent Lockscreen : {Controller.CurrentLogic.State.GetEnumDescription()}";
+                Text = $"{Controller.ScreenName} : {Controller.CurrentLogic.State.GetEnumDescription()}";
             }
         }
 

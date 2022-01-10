@@ -7,7 +7,7 @@ namespace PreventLockScreen.Client.SystemTray.NotifyMenuItem
     {
         internal StatusNTCommand() :base()
         {
-            Text = "Prevent Lockscreen";
+            Text = Controller.ScreenName;
             Name = "Status";
             Click += StatusNTCommand_Click;
 
@@ -23,7 +23,7 @@ namespace PreventLockScreen.Client.SystemTray.NotifyMenuItem
         {
             if(sender is CurrentLogic logic)
             {
-                Text = $"Prevent Lockscreen <{logic.State}>";                
+                Text = $"{Controller.ScreenName} <{logic.State}>";                
             }            
         }
     }

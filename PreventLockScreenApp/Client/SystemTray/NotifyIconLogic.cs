@@ -17,7 +17,7 @@ namespace PreventLockScreen.Client.SystemTray
 
         }
 
-        public static NotifyIcon GetNotify()
+        public static NotifyIcon GetNotify(string text)
         {
             if (_trayIcon == null)
             {
@@ -25,11 +25,18 @@ namespace PreventLockScreen.Client.SystemTray
                 {
                     Icon = Properties.Resources.lightning,
                     ContextMenu = GetContextMenu(),
+                    Text = text
                 };
+                _trayIcon.Click += TrayIcon_Click;
             }
 
             _trayIcon.Visible = true;
             return _trayIcon;
+        }
+
+        private static void TrayIcon_Click(object sender, EventArgs e)
+        {
+            Controller.ShowRunDialog(sender);
         }
 
         private static ContextMenu GetContextMenu()
