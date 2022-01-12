@@ -12609,7 +12609,7 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Prevent Lockscreen"
+        "ProductName" = "8:PreventPowerSave"
         "ProductCode" = "8:{6EFF0BEB-DD95-458B-8FFC-D80BCAC2DA51}"
         "PackageCode" = "8:{3B15C4DA-9220-4E03-BA81-68CE13157588}"
         "UpgradeCode" = "8:{848711E1-EC98-4C36-BFA5-EACBD57B8111}"
@@ -13160,7 +13160,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_D1651FB9090146D893704216490E40CE"
             {
-            "SourcePath" = "8:..\\PreventLockScreenApp\\obj\\Release\\PreventLockScreen.exe"
+            "SourcePath" = "8:..\\PreventLockScreenApp\\obj\\Debug\\PreventPowerSave.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_FB8E7D30F9274FF2AF008AC8F1746613"
