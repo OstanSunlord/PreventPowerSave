@@ -171,15 +171,15 @@
     <None Include="Resources\lightning.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\loadingScreen.png" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications">
       <Version>7.1.2</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.1</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loadingScreen.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

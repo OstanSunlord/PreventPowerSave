@@ -11,9 +11,9 @@ namespace PreventPowerSave.CoreElements
     {
         public static string GetWorkingFolder()
         {
-            var parh = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "PreventLockScreenApp");
+            var parh = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "PreventPowerSaveApp");
 
-            if(!Directory.Exists(parh))
+            if(!Directory.Exists(parh))  
             {
                 Directory.CreateDirectory(parh);
             }
