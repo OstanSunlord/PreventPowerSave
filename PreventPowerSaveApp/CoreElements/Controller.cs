@@ -37,7 +37,10 @@ namespace PreventPowerSave.CoreElements
                     ConfigData.SetThemeMode(ConfigurationDialog.ThemeMode);
                     ConfigData.SetRunOnStartUp(ConfigurationDialog.RunOnStartUp);
                     ConfigData.SetRunInSystemTray(ConfigurationDialog.RunInSystemTray);
+                    ConfigData.SetEndlessMode(ConfigurationDialog.EndlessMode);
+                    ConfigData.SetAfkPreventionEnabled(ConfigurationDialog.AfkPreventionEnabled);
                     ConfigData.Save();
+                    ApplyAfkPrevention();
                 }
 
                 ConfigurationDialog.Dispose();
@@ -88,6 +91,14 @@ namespace PreventPowerSave.CoreElements
             }
         }
 
+
+        internal static void ApplyAfkPrevention()
+        {
+            if (ConfigData.AfkPreventionEnabled)
+                AfkPrevention.Start();
+            else
+                AfkPrevention.Stop();
+        }
 
         internal static void ShowRunDialog(object sender) =>
             ShowRunDialog(sender, true);

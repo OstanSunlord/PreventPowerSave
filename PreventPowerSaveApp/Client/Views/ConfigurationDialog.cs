@@ -13,9 +13,6 @@ namespace PreventPowerSave.Client
             Text = text;
 
             ConfigData = configData;
-
-            btnAmend.BackColor = BackColor;
-            btnClose.BackColor = BackColor;
         }
 
         public ConfigData ConfigData { get; }
@@ -42,6 +39,18 @@ namespace PreventPowerSave.Client
             set => cbRunAsSystemTray.Checked = value;
         }
 
+        public bool EndlessMode
+        {
+            get => cbEndlessMode.Checked;
+            set => cbEndlessMode.Checked = value;
+        }
+
+        public bool AfkPreventionEnabled
+        {
+            get => cbAfkPrevention.Checked;
+            set => cbAfkPrevention.Checked = value;
+        }
+
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -56,6 +65,8 @@ namespace PreventPowerSave.Client
             ThemeMode = ConfigData.ThemeMode.GetEnumDescription();
             RunOnStartUp = ConfigData.RunOnStartUp;
             RunInSystemTray = ConfigData.RunInSystemTray;
+            EndlessMode = ConfigData.EndlessMode;
+            AfkPreventionEnabled = ConfigData.AfkPreventionEnabled;
         }
 
         private void btn_Click(object sender, EventArgs e)

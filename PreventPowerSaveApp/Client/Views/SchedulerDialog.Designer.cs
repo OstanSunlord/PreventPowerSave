@@ -68,7 +68,7 @@ namespace PreventPowerSave.Client
             this.btnAmend.Name = "btnAmend";
             this.btnAmend.Size = new System.Drawing.Size(87, 26);
             this.btnAmend.TabIndex = 4;
-            this.btnAmend.Text = "Amend";
+            this.btnAmend.Text = "Save";
             this.btnAmend.UseVisualStyleBackColor = false;
             this.btnAmend.Click += new System.EventHandler(this.btnAmend_Click);
             // 

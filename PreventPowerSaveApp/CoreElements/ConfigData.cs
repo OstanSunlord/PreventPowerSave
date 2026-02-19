@@ -19,6 +19,10 @@ namespace PreventPowerSave.CoreElements
         public bool RunInSystemTray { get; set; } = true;
         [XmlAttribute("scheduler")]
         public string Scheduler { get; set; } = string.Empty;
+        [XmlAttribute("endlessMode")]
+        public bool EndlessMode { get; set; } = false;
+        [XmlAttribute("afkPrevention")]
+        public bool AfkPreventionEnabled { get; set; } = false;
 
         public event EventHandler<EventArgs> Saved;
         public event EventHandler<EventArgs> Loaded;
@@ -56,6 +60,8 @@ namespace PreventPowerSave.CoreElements
             RunOnStartUp = data.RunOnStartUp;
             RunInSystemTray = data.RunInSystemTray;
             Scheduler = data.Scheduler;
+            EndlessMode = data.EndlessMode;
+            AfkPreventionEnabled = data.AfkPreventionEnabled;
             Controller.Schedulers.Load(Scheduler);
 
             Loaded?.Invoke(this, EventArgs.Empty);
@@ -105,6 +111,10 @@ namespace PreventPowerSave.CoreElements
                 Interval = value;
             }
         }
+
+        internal void SetEndlessMode(bool value) => EndlessMode = value;
+
+        internal void SetAfkPreventionEnabled(bool value) => AfkPreventionEnabled = value;
 
         private string GetConfigFilePath()
         {

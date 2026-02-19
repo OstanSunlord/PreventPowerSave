@@ -29,19 +29,22 @@ namespace PreventPowerSave.Client
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lbThemeHeader = new System.Windows.Forms.Label();
             this.cbThemeSelect = new System.Windows.Forms.ComboBox();
             this.cbRunOnStart = new System.Windows.Forms.CheckBox();
-            this.btnAmend = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
+            this.btnAmend = new PreventPowerSave.Client.AButton(this.components);
+            this.btnClose = new PreventPowerSave.Client.AButton(this.components);
             this.lbIntervalHeader = new System.Windows.Forms.Label();
             this.tbInterVal = new System.Windows.Forms.TextBox();
             this.lbMinuteHeader = new System.Windows.Forms.Label();
             this.cbRunAsSystemTray = new System.Windows.Forms.CheckBox();
+            this.cbEndlessMode = new System.Windows.Forms.CheckBox();
+            this.cbAfkPrevention = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
-            // 
+            //
             // lbThemeHeader
-            // 
+            //
             this.lbThemeHeader.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbThemeHeader.AutoSize = true;
             this.lbThemeHeader.Location = new System.Drawing.Point(16, 18);
@@ -49,9 +52,9 @@ namespace PreventPowerSave.Client
             this.lbThemeHeader.Size = new System.Drawing.Size(53, 16);
             this.lbThemeHeader.TabIndex = 0;
             this.lbThemeHeader.Text = "Theme:";
-            // 
+            //
             // cbThemeSelect
-            // 
+            //
             this.cbThemeSelect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbThemeSelect.FormattingEnabled = true;
             this.cbThemeSelect.Location = new System.Drawing.Point(86, 15);
@@ -59,48 +62,9 @@ namespace PreventPowerSave.Client
             this.cbThemeSelect.Name = "cbThemeSelect";
             this.cbThemeSelect.Size = new System.Drawing.Size(140, 24);
             this.cbThemeSelect.TabIndex = 2;
-            // 
-            // cbRunOnStart
-            // 
-            this.cbRunOnStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbRunOnStart.AutoSize = true;
-            this.cbRunOnStart.Location = new System.Drawing.Point(115, 124);
-            this.cbRunOnStart.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cbRunOnStart.Name = "cbRunOnStart";
-            this.cbRunOnStart.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cbRunOnStart.Size = new System.Drawing.Size(111, 20);
-            this.cbRunOnStart.TabIndex = 3;
-            this.cbRunOnStart.Text = "Run on startup";
-            this.cbRunOnStart.UseVisualStyleBackColor = true;
-            // 
-            // btnAmend
-            // 
-            this.btnAmend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAmend.DialogResult = System.Windows.Forms.DialogResult.Yes;
-            this.btnAmend.Location = new System.Drawing.Point(45, 152);
-            this.btnAmend.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnAmend.Name = "btnAmend";
-            this.btnAmend.Size = new System.Drawing.Size(87, 28);
-            this.btnAmend.TabIndex = 4;
-            this.btnAmend.Text = "Amend";
-            this.btnAmend.UseVisualStyleBackColor = true;
-            this.btnAmend.Click += new System.EventHandler(this.btn_Click);
-            // 
-            // btnClose
-            // 
-            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(139, 152);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(87, 28);
-            this.btnClose.TabIndex = 5;
-            this.btnClose.Text = "Close";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btn_Click);
-            // 
+            //
             // lbIntervalHeader
-            // 
+            //
             this.lbIntervalHeader.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbIntervalHeader.AutoSize = true;
             this.lbIntervalHeader.Location = new System.Drawing.Point(16, 48);
@@ -108,9 +72,9 @@ namespace PreventPowerSave.Client
             this.lbIntervalHeader.Size = new System.Drawing.Size(56, 16);
             this.lbIntervalHeader.TabIndex = 6;
             this.lbIntervalHeader.Text = "Interval:";
-            // 
+            //
             // tbInterVal
-            // 
+            //
             this.tbInterVal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tbInterVal.Location = new System.Drawing.Point(86, 45);
             this.tbInterVal.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -119,9 +83,9 @@ namespace PreventPowerSave.Client
             this.tbInterVal.Size = new System.Drawing.Size(70, 23);
             this.tbInterVal.TabIndex = 7;
             this.tbInterVal.Text = "120";
-            // 
+            //
             // lbMinuteHeader
-            // 
+            //
             this.lbMinuteHeader.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbMinuteHeader.AutoSize = true;
             this.lbMinuteHeader.Location = new System.Drawing.Point(162, 48);
@@ -129,28 +93,81 @@ namespace PreventPowerSave.Client
             this.lbMinuteHeader.Size = new System.Drawing.Size(53, 16);
             this.lbMinuteHeader.TabIndex = 8;
             this.lbMinuteHeader.Text = "minutes";
-            // 
+            //
+            // cbEndlessMode
+            //
+            this.cbEndlessMode.AutoSize = true;
+            this.cbEndlessMode.Location = new System.Drawing.Point(16, 77);
+            this.cbEndlessMode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbEndlessMode.Name = "cbEndlessMode";
+            this.cbEndlessMode.TabIndex = 10;
+            this.cbEndlessMode.Text = "Endless mode";
+            this.cbEndlessMode.UseVisualStyleBackColor = true;
+            //
+            // cbAfkPrevention
+            //
+            this.cbAfkPrevention.AutoSize = true;
+            this.cbAfkPrevention.Location = new System.Drawing.Point(16, 105);
+            this.cbAfkPrevention.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbAfkPrevention.Name = "cbAfkPrevention";
+            this.cbAfkPrevention.TabIndex = 11;
+            this.cbAfkPrevention.Text = "Prevent AFK (Teams)";
+            this.cbAfkPrevention.UseVisualStyleBackColor = true;
+            //
             // cbRunAsSystemTray
-            // 
-            this.cbRunAsSystemTray.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            //
             this.cbRunAsSystemTray.AutoSize = true;
             this.cbRunAsSystemTray.Checked = true;
             this.cbRunAsSystemTray.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbRunAsSystemTray.Location = new System.Drawing.Point(87, 96);
+            this.cbRunAsSystemTray.Location = new System.Drawing.Point(16, 133);
             this.cbRunAsSystemTray.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbRunAsSystemTray.Name = "cbRunAsSystemTray";
-            this.cbRunAsSystemTray.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cbRunAsSystemTray.Size = new System.Drawing.Size(139, 20);
             this.cbRunAsSystemTray.TabIndex = 9;
             this.cbRunAsSystemTray.Text = "Run in System Tray";
             this.cbRunAsSystemTray.UseVisualStyleBackColor = true;
-            // 
+            //
+            // cbRunOnStart
+            //
+            this.cbRunOnStart.AutoSize = true;
+            this.cbRunOnStart.Location = new System.Drawing.Point(16, 161);
+            this.cbRunOnStart.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbRunOnStart.Name = "cbRunOnStart";
+            this.cbRunOnStart.TabIndex = 3;
+            this.cbRunOnStart.Text = "Run on startup";
+            this.cbRunOnStart.UseVisualStyleBackColor = true;
+            //
+            // btnAmend
+            //
+            this.btnAmend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAmend.DialogResult = System.Windows.Forms.DialogResult.Yes;
+            this.btnAmend.Location = new System.Drawing.Point(45, 192);
+            this.btnAmend.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnAmend.Name = "btnAmend";
+            this.btnAmend.Size = new System.Drawing.Size(87, 28);
+            this.btnAmend.TabIndex = 4;
+            this.btnAmend.Text = "Save";
+            this.btnAmend.Click += new System.EventHandler(this.btn_Click);
+            //
+            // btnClose
+            //
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose.Location = new System.Drawing.Point(139, 192);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(87, 28);
+            this.btnClose.TabIndex = 5;
+            this.btnClose.Text = "Close";
+            this.btnClose.Click += new System.EventHandler(this.btn_Click);
+            //
             // ConfigurationDialog
-            // 
+            //
             this.AcceptButton = this.btnAmend;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(241, 195);
+            this.ClientSize = new System.Drawing.Size(241, 235);
+            this.Controls.Add(this.cbAfkPrevention);
+            this.Controls.Add(this.cbEndlessMode);
             this.Controls.Add(this.cbRunAsSystemTray);
             this.Controls.Add(this.lbMinuteHeader);
             this.Controls.Add(this.tbInterVal);
@@ -178,11 +195,13 @@ namespace PreventPowerSave.Client
         private System.Windows.Forms.Label lbThemeHeader;
         private System.Windows.Forms.ComboBox cbThemeSelect;
         private System.Windows.Forms.CheckBox cbRunOnStart;
-        private System.Windows.Forms.Button btnAmend;
-        private System.Windows.Forms.Button btnClose;
+        private AButton btnAmend;
+        private AButton btnClose;
         private System.Windows.Forms.Label lbIntervalHeader;
         private System.Windows.Forms.TextBox tbInterVal;
         private System.Windows.Forms.Label lbMinuteHeader;
         private System.Windows.Forms.CheckBox cbRunAsSystemTray;
+        private System.Windows.Forms.CheckBox cbEndlessMode;
+        private System.Windows.Forms.CheckBox cbAfkPrevention;
     }
 }

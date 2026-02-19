@@ -130,15 +130,15 @@ namespace PreventPowerSave.Client
             this.btnAmend.Name = "btnAmend";
             this.btnAmend.Size = new System.Drawing.Size(75, 23);
             this.btnAmend.TabIndex = 7;
-            this.btnAmend.Text = "Amend";
+            this.btnAmend.Text = "Save";
             this.btnAmend.UseVisualStyleBackColor = false;
             this.btnAmend.Click += new System.EventHandler(this.btn_Click);
-            // 
+            //
             // AddOrEditSchedulerDialog
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            //
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(199, 143);
+            this.ClientSize = new System.Drawing.Size(210, 148);
             this.Controls.Add(this.btnAmend);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.nubEnd);
@@ -147,9 +147,11 @@ namespace PreventPowerSave.Client
             this.Controls.Add(this.lbEndHeader);
             this.Controls.Add(this.lbStartHeader);
             this.Controls.Add(this.lbTitleHeader);
+            this.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "AddOrEditSchedulerDialog";
-            this.Text = "AddOrEditSchedulerDialog";
+            this.Text = "Add / Edit Schedule";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AddOrEditSchedulerDialog_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.nubStart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nubEnd)).EndInit();

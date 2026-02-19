@@ -52,6 +52,7 @@ namespace PreventPowerSave.Client
             Controller.ConfigData.RunOnStartUpChanged += ConfigData_RunOnStartUpChanged;
             Controller.ConfigData.RunInSystemTrayChanged += ConfigData_RunInSystemTrayChanged;
             Controller.ConfigData.Load();
+            Controller.ApplyAfkPrevention();
 
             Controller.CurrentLogic.StartScheduler();
 

@@ -84,6 +84,7 @@
     <Compile Include="Client\Views\SchedulerDialog.Designer.cs">
       <DependentUpon>SchedulerDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="CoreElements\AfkPrevention.cs" />
     <Compile Include="CoreElements\KeyboardHook.cs" />
     <Compile Include="CoreElements\PowerUtilities.cs" />
     <Compile Include="CoreElements\SchedulerCollection.cs" />

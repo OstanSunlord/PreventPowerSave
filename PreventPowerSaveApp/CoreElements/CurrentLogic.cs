@@ -21,6 +21,7 @@ namespace PreventPowerSave.CoreElements
         private DateTime m_endDateTime;
         private DateTime m_startDateTime;
         private PROGRAM_STATE state;
+        private bool _endless = false;
 
         public event EventHandler<ElapsedEventArgs> Elapsed;
 
@@ -29,6 +30,10 @@ namespace PreventPowerSave.CoreElements
             if (state == PROGRAM_STATE.Running)
             {
                 Stop();
+            }
+            else if (Controller.ConfigData.EndlessMode)
+            {
+                StartEndless();
             }
             else
             {
@@ -72,11 +77,13 @@ namespace PreventPowerSave.CoreElements
         {
             get
             {
+                if (_endless) return 0;
                 if (m_startDateTime > m_endDateTime) return 0;
                 return (int)Math.Ceiling(m_endDateTime.Subtract(m_startDateTime).TotalMilliseconds);
             }
         }
         public DateTime EndDateTime => m_endDateTime;
+        public bool IsEndless => _endless;
 
         Timer SchedulerTimer
         {
@@ -113,21 +120,28 @@ namespace PreventPowerSave.CoreElements
         }
 
         internal void Start(int runTime) =>
-            Start(runTime, null);
-        internal void Start(int runTime, SchedulerItem scheduler)
+            Start(runTime, null, false);
+        internal void Start(int runTime, SchedulerItem scheduler) =>
+            Start(runTime, scheduler, false);
+        internal void StartEndless() =>
+            Start(0, null, true);
+        internal void Start(int runTime, SchedulerItem scheduler, bool endless)
         {
             if (State == PROGRAM_STATE.Idle)
             {
+                _endless = endless;
                 m_startDateTime = DateTime.Now;
-                m_endDateTime = DateTime.Now.AddMinutes(runTime);
+                m_endDateTime = endless ? DateTime.MaxValue : DateTime.Now.AddMinutes(runTime);
                 SchedulerTimer.Stop();
                 MainTimer.Start();
-                PowerUtilities.PreventPowerSave(); 
-                //SetThreadExecutionState(EXECUTION_STATE.ES_DISPLAY_REQUIRED | EXECUTION_STATE.ES_CONTINUOUS);
+                PowerUtilities.PreventPowerSave();
                 State = PROGRAM_STATE.Running;
 
-                Notifications.Show(scheduler != null ? $"Scheduler <{scheduler.Title}> {Controller.ScreenName}" : Controller.ScreenName,
-                    $"Windows is prevented from locking down{Environment.NewLine}End time is set to: {m_endDateTime.ToShortDateString()} {m_endDateTime.ToString("HH:mm")}");
+                string body = endless
+                    ? $"Windows is prevented from locking down{Environment.NewLine}Running in endless mode"
+                    : $"Windows is prevented from locking down{Environment.NewLine}End time is set to: {m_endDateTime.ToShortDateString()} {m_endDateTime.ToString("HH:mm")}";
+
+                Notifications.Show(scheduler != null ? $"Scheduler <{scheduler.Title}> {Controller.ScreenName}" : Controller.ScreenName, body);
                 Started?.Invoke(this, EventArgs.Empty);
             }
         }
@@ -135,11 +149,11 @@ namespace PreventPowerSave.CoreElements
         {
             if (State != PROGRAM_STATE.Idle)
             {
+                _endless = false;
                 m_endDateTime = DateTime.Now;
                 MainTimer.Stop();
                 SchedulerTimer.Start();
                 PowerUtilities.Shutdown();
-                //SetThreadExecutionState(EXECUTION_STATE.ES_CONTINUOUS);
                 State = PROGRAM_STATE.Idle;
 
                 Notifications.Show(Controller.ScreenName,
@@ -153,7 +167,7 @@ namespace PreventPowerSave.CoreElements
         {
             Elapsed?.Invoke(sender, e);
 
-            if (m_endDateTime <= DateTime.Now)
+            if (!_endless && m_endDateTime <= DateTime.Now)
             {
                 Stop();
                 return;

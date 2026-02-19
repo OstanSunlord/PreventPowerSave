@@ -56,7 +56,6 @@ namespace PreventPowerSave.Client
             // 
             this.btnConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnConfig.BackColor = System.Drawing.SystemColors.Control;
-            this.btnConfig.FlatAppearance.BorderSize = 0;
             this.btnConfig.ForeColor = System.Drawing.Color.Black;
             this.btnConfig.Location = new System.Drawing.Point(179, 82);
             this.btnConfig.Name = "btnConfig";

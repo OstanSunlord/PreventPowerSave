@@ -37,8 +37,17 @@ namespace PreventPowerSave.Client
             }
         }
 
-        public string EndTime =>
-            $"End Time: { Controller.CurrentLogic.EndDateTime.ToShortDateString()} { Controller.CurrentLogic.EndDateTime:HH:mm}";
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+            // Subscribe after AButton.OnCreateControl so our handler runs last and wins
+            Controller.ConfigData.ThemeChanged += (s, ev) => UpdateStartAndStopButton();
+            UpdateStartAndStopButton();
+        }
+
+        public string EndTime => Controller.CurrentLogic.IsEndless
+            ? "Endless mode"
+            : $"End Time: {Controller.CurrentLogic.EndDateTime.ToShortDateString()} {Controller.CurrentLogic.EndDateTime:HH:mm}";
 
         private void CurrentLogic_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
@@ -49,6 +58,7 @@ namespace PreventPowerSave.Client
         {
             UpdateStartAndStopButton();
             UpdateContext();
+            ResetProgressBar();
         }
 
         private void CurrentLogic_Started(object sender, EventArgs e)
@@ -70,7 +80,10 @@ namespace PreventPowerSave.Client
             }
             else
             {
-                Controller.CurrentLogic.Start(Controller.ConfigData.Interval);
+                if (Controller.ConfigData.EndlessMode)
+                    Controller.CurrentLogic.StartEndless();
+                else
+                    Controller.CurrentLogic.Start(Controller.ConfigData.Interval);
                 InitProgressBar();
             }
         }
@@ -83,7 +96,15 @@ namespace PreventPowerSave.Client
             }
             else
             {
-                bthStartAndStop.Text = Controller.CurrentLogic.State == CoreElements.State.PROGRAM_STATE.Running ? "Stop" : "Start";
+                bool running = Controller.CurrentLogic.State == CoreElements.State.PROGRAM_STATE.Running;
+                bthStartAndStop.Text = running ? "■  Stop" : "▶  Start";
+                bthStartAndStop.BackColor = running
+                    ? Color.FromArgb(180, 40, 40)
+                    : Color.FromArgb(40, 150, 70);
+                bthStartAndStop.ForeColor = Color.White;
+                bthStartAndStop.FlatAppearance.BorderColor = running
+                    ? Color.FromArgb(140, 20, 20)
+                    : Color.FromArgb(20, 110, 50);
             }
         }
 
@@ -108,18 +129,42 @@ namespace PreventPowerSave.Client
             }
             else
             {
-            pbWorkingStatus.Value = pbWorkingStatus.Maximum < Controller.CurrentLogic.RunningTicks ? 
-                    pbWorkingStatus.Maximum : Controller.CurrentLogic.RunningTicks;
+                if (Controller.CurrentLogic.IsEndless) return;
+                pbWorkingStatus.Value = pbWorkingStatus.Maximum < Controller.CurrentLogic.RunningTicks
+                    ? pbWorkingStatus.Maximum
+                    : Controller.CurrentLogic.RunningTicks;
             }
         }
 
-        private void InitProgressBar() => InitProgressBar(Controller.CurrentLogic.TotalTickInterval);
-        private void InitProgressBar(int max) => InitProgressBar(0, max);
-        private void InitProgressBar(int min, int max)
+        private void InitProgressBar()
         {
-            pbWorkingStatus.Minimum = min;
-            pbWorkingStatus.Maximum = max;
-            pbWorkingStatus.Value = 0;
+            if (Controller.CurrentLogic.IsEndless)
+            {
+                pbWorkingStatus.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+                pbWorkingStatus.MarqueeAnimationSpeed = 30;
+            }
+            else
+            {
+                pbWorkingStatus.Style = System.Windows.Forms.ProgressBarStyle.Blocks;
+                pbWorkingStatus.Minimum = 0;
+                pbWorkingStatus.Maximum = Controller.CurrentLogic.TotalTickInterval;
+                pbWorkingStatus.Value = 0;
+            }
+        }
+
+        private void ResetProgressBar()
+        {
+            if (InvokeRequired)
+            {
+                Invoke((Action)delegate { ResetProgressBar(); });
+            }
+            else
+            {
+                pbWorkingStatus.Style = System.Windows.Forms.ProgressBarStyle.Blocks;
+                pbWorkingStatus.Minimum = 0;
+                pbWorkingStatus.Maximum = 100;
+                pbWorkingStatus.Value = 0;
+            }
         }
 
         private void ResetDisplay()

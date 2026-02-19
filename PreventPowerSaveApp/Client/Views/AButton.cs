@@ -25,6 +25,7 @@ namespace PreventPowerSave.Client
         {
             base.OnCreateControl();
 
+            FlatStyle = FlatStyle.Flat;
             SetTheme();
             Controller.ConfigData.ThemeChanged += ConfigData_ThemeChanged;
         }
@@ -40,6 +41,8 @@ namespace PreventPowerSave.Client
                 UseVisualStyleBackColor = false;
                 ForeColor = Themes.ForeColor;
                 BackColor = Themes.BackColor;
+                FlatAppearance.BorderColor = Themes.BorderColor;
+                FlatAppearance.MouseOverBackColor = Themes.HoverColor;
             }
         }
 

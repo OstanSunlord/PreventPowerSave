@@ -19,13 +19,6 @@ namespace PreventPowerSave.Client
 
             Text = text;
 
-            Controller.ConfigData.ThemeChanged += ConfigData_ThemeChanged;
-
-        }
-
-        private void ConfigData_ThemeChanged(object sender, EventArgs e)
-        {
-            
         }
 
         public string Title

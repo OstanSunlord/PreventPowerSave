@@ -1,13 +1,8 @@
 ﻿using PreventPowerSave.CoreElements;
-using PreventPowerSave.CoreElements.State;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PreventPowerSave.Client
@@ -40,19 +35,26 @@ namespace PreventPowerSave.Client
 
         private void ChangeTheme()
         {
-            dgvScheduler.BackgroundColor = SystemColors.AppWorkspace;
+            // Must be false so our ColumnHeadersDefaultCellStyle colours are
+            // actually rendered; with true, Windows overrides them with its own style.
+            dgvScheduler.EnableHeadersVisualStyles = false;
 
-            //dgvScheduler.DefaultCellStyle.SelectionBackColor = Controller.ConfigData.ThemeMode != THEMEMODE_STATE.DarkMode ? SystemColors.ControlDark : Color.White;
-            //dgvScheduler.DefaultCellStyle.SelectionForeColor = Controller.ConfigData.ThemeMode != THEMEMODE_STATE.DarkMode ? Color.White : SystemColors.ControlDark;
-            //dgvScheduler.RowHeadersDefaultCellStyle.SelectionBackColor = Color.Yellow;
+            dgvScheduler.BackgroundColor                                  = Themes.GridBackColor;
+            dgvScheduler.GridColor                                        = Themes.GridLineColor;
 
-            dgvScheduler.RowsDefaultCellStyle.BackColor = Controller.ConfigData.ThemeMode == THEMEMODE_STATE.DarkMode ? SystemColors.ControlDark : Color.White;
-            dgvScheduler.AlternatingRowsDefaultCellStyle.BackColor = Controller.ConfigData.ThemeMode == THEMEMODE_STATE.DarkMode ? SystemColors.ControlDark : Color.White;
+            dgvScheduler.DefaultCellStyle.BackColor                       = Themes.GridRowBackColor;
+            dgvScheduler.DefaultCellStyle.ForeColor                       = Themes.GridRowForeColor;
+            dgvScheduler.DefaultCellStyle.SelectionBackColor              = Themes.GridSelectionBackColor;
+            dgvScheduler.DefaultCellStyle.SelectionForeColor              = Themes.GridSelectionForeColor;
 
-            dgvScheduler.ColumnHeadersDefaultCellStyle.ForeColor = Controller.ConfigData.ThemeMode != THEMEMODE_STATE.DarkMode ? Color.White : Color.Black;
-            dgvScheduler.ColumnHeadersDefaultCellStyle.BackColor = Controller.ConfigData.ThemeMode == THEMEMODE_STATE.DarkMode ? Color.White : Color.Black;
-            dgvScheduler.RowHeadersDefaultCellStyle.BackColor = Controller.ConfigData.ThemeMode == THEMEMODE_STATE.DarkMode ? Color.White : Color.Black; ;
+            dgvScheduler.AlternatingRowsDefaultCellStyle.BackColor        = Themes.GridRowAltBackColor;
+            dgvScheduler.AlternatingRowsDefaultCellStyle.ForeColor        = Themes.GridRowForeColor;
 
+            dgvScheduler.ColumnHeadersDefaultCellStyle.BackColor          = Themes.GridHeaderBackColor;
+            dgvScheduler.ColumnHeadersDefaultCellStyle.ForeColor          = Themes.GridHeaderForeColor;
+
+            dgvScheduler.RowHeadersDefaultCellStyle.BackColor             = Themes.GridHeaderBackColor;
+            dgvScheduler.RowHeadersDefaultCellStyle.ForeColor             = Themes.GridHeaderForeColor;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
